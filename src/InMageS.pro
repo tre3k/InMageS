@@ -1,7 +1,14 @@
-QT = core gui
+QT += \
+  core \
+  gui \
+  widgets
 
 TARGET = inmages
+TEMPLATE = app
 
 SOURCES += \
-	main.cpp
+        main.cpp \
+        mainwindow.cpp
 	
+HEADERS += \
+        mainwindow.h
