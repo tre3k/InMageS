@@ -8,7 +8,11 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
-  
+    this->setWindowTitle("InMageS");
+
+    ChoseBar *chBar = new ChoseBar();
+    this->setCentralWidget(chBar);
+
 
 }
 

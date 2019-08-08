@@ -9,8 +9,10 @@ TEMPLATE = app
 SOURCES += \
         indata.cpp \
         main.cpp \
-        mainwindow.cpp
-	
+        mainwindow.cpp \
+        chosebar.cpp
+
 HEADERS += \
         indata.h \
-        mainwindow.h
+        mainwindow.h \
+        chosebar.h

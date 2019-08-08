@@ -11,6 +11,8 @@
 
 #include <QMainWindow>
 
+#include "chosebar.h"
+
 class MainWindow : public QMainWindow{
     Q_OBJECT
 
