@@ -10,6 +10,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPropertyAnimation>
 
 #include "chosebar.h"
 
@@ -21,6 +22,8 @@ class MainWindow : public QMainWindow{
     ~MainWindow();
 
   private:
+
+
 
   private slots:
     

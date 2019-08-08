@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     ChoseBar *chBar = new ChoseBar();
     this->setCentralWidget(chBar);
 
-
 }
 
 MainWindow::~MainWindow(){
