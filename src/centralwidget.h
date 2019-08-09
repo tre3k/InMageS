@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
+#include <QVector>
 
 #include "chosebar.h"
 
@@ -20,6 +21,15 @@ private:
     ChoseBar *ch_bar;
     QHBoxLayout *layout;
     QHBoxLayout *placeLayout;
+
+    QVector<QWidget *> *widgets;
+
+private:
+    void hideAll();
+
+private slots:
+    void showIndex(int index);
+
 };
 
 #endif // CENTRALWIDGET_H

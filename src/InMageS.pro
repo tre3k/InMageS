@@ -18,3 +18,6 @@ HEADERS += \
         indata.h \
         mainwindow.h \
         chosebar.h
+
+RESOURCES += \
+    resources.qrc

@@ -11,6 +11,7 @@
 
 #include <QMainWindow>
 #include <QPropertyAnimation>
+#include <QLabel>
 
 #include "chosebar.h"
 #include "centralwidget.h"
@@ -24,6 +25,7 @@ class MainWindow : public QMainWindow{
 
   private:
 
+    CentralWidget *cw;
 
 
   private slots:
