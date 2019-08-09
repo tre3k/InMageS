@@ -7,17 +7,15 @@ TARGET = inmages
 TEMPLATE = app
 
 SOURCES += \
-        centralwidget.cpp \
         indata.cpp \
         main.cpp \
         mainwindow.cpp \
-        chosebar.cpp
+        widgets/sidebar.cpp
 
 HEADERS += \
-        centralwidget.h \
         indata.h \
         mainwindow.h \
-        chosebar.h
+        widgets/sidebar.h
 
 RESOURCES += \
     resources.qrc
