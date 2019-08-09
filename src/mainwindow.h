@@ -13,6 +13,7 @@
 #include <QPropertyAnimation>
 
 #include "chosebar.h"
+#include "centralwidget.h"
 
 class MainWindow : public QMainWindow{
     Q_OBJECT
