@@ -18,6 +18,8 @@ SideBarUnit::SideBarUnit(QString text, QString image_path,QWidget *parent) : QWi
     setImage(image_path);
 
     setPalleteSelected();
+
+    this->setMouseTracking(true);
 }
 
 
@@ -31,6 +33,17 @@ void SideBarUnit::setImage(QString filepath){
     label_image->setPixmap(image.scaled(50,50,Qt::KeepAspectRatioByExpanding));
 }
 
+void SideBarUnit::mousePressEvent(QMouseEvent *event){
+    qDebug() << "press";
+}
+
+void SideBarUnit::mouseReleaseEvent(QMouseEvent *event){
+    qDebug() << "release";
+}
+
+void SideBarUnit::mouseMoveEvent(QMouseEvent *event){
+    //if(this->rect().contains())
+}
 
 /* SLOTS */
 

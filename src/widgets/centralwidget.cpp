@@ -7,7 +7,7 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent)
     this->setLayout(layout);
     layout->addWidget(sb);
 
-
+    layout->setMargin(0);
 }
 
 

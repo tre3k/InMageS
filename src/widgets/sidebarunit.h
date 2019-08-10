@@ -5,6 +5,7 @@
 #include <QIcon>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QDebug>
 
 class SideBarUnit : public QWidget
 {
@@ -13,6 +14,11 @@ public:
     explicit SideBarUnit(QString text="", QString image_path="", QWidget *parent = nullptr);
     void setText(QString text);
     void setImage(QString filepath);
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
 
 private:
     QLabel *label;
