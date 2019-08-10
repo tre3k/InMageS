@@ -13,6 +13,8 @@
 #include <QPropertyAnimation>
 #include <QLabel>
 
+#include "widgets/centralwidget.h"
+
 class MainWindow : public QMainWindow{
     Q_OBJECT
 
@@ -22,7 +24,7 @@ class MainWindow : public QMainWindow{
 
   private:
 
-
+    CentralWidget *cw;
 
   private slots:
     

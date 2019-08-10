@@ -8,9 +8,13 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
+    cw = new CentralWidget();
 
+    this->setCentralWidget(cw);
+
+    return;
 }
 
 MainWindow::~MainWindow(){
-  
+    delete cw;
 }

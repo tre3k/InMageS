@@ -2,6 +2,10 @@
 #define SIDEBAR_H
 
 #include <QWidget>
+#include <QVector>
+#include <QVBoxLayout>
+
+#include "sidebarunit.h"
 
 class SideBar : public QWidget
 {
@@ -9,9 +13,15 @@ class SideBar : public QWidget
 public:
     explicit SideBar(QWidget *parent = nullptr);
 
+private:
+    QVBoxLayout *layout;
+    QVector<SideBarUnit *> *unit_list;
+
 signals:
 
 public slots:
+    void addUnit(SideBarUnit *unit);
+
 };
 
 #endif // SIDEBAR_H
