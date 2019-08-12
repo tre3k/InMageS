@@ -18,6 +18,14 @@
 #include "widgets/centralwidget.h"
 #include "widgets/statusbar.h"
 
+/* include tabs on mainWidget*/
+#include "widgets/tabopen.h"
+#include "widgets/tabtheory.h"
+#include "widgets/tabprocessing.h"
+#include "widgets/tabsave.h"
+#include "widgets/tabhelp.h"
+
+
 #define MAINWINDOW_MINIMUM_W 600
 #define MAINWINDOW_MINIMUM_H 400
 

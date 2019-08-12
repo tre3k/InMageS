@@ -26,12 +26,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     SideBarUnit *save_unit = new SideBarUnit("Save", ":/icons/save_n.svg", ":/icons/save_a.svg");
     SideBarUnit *exit_unit = new SideBarUnit("Exit", ":/icons/exit_a.svg", ":/icons/exit_a.svg");
 
-    cw->addTab(open_unit,new QLabel("Open"));
-    cw->addTab(theory_unit,new QLabel("Theory"));
-    cw->addTab(processing_unit,new QLabel("Processing"));
-    cw->addTab(save_unit,new QLabel("Save"));
+    TabOpen *open_widget = new TabOpen();
+    TabTheory *theory_widget = new TabTheory();
+    TabProcessing *processing_widget = new TabProcessing();
+    TabSave *save_widget = new TabSave();
+    TabHelp *help_widget = new TabHelp();
+
+    cw->addTab(open_unit, open_widget);
+    cw->addTab(theory_unit, theory_widget);
+    cw->addTab(processing_unit, processing_widget);
+    cw->addTab(save_unit,save_widget);
     cw->addSplit();
-    cw->addTab(help_unit,new QLabel("Copyright (c) PNPI 2019\nKirill Pshenichnyi (pshcyrill@mail.ru)"));
+    cw->addTab(help_unit, help_widget);
     cw->addTab(exit_unit,new QLabel("Good bay!"));
 
     cw->activate(0);
