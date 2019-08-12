@@ -10,6 +10,7 @@ SOURCES += \
         processing/indata.cpp \
         main.cpp \
         mainwindow.cpp \
+        widgets/tabopen.cpp \
         widgets/centralwidget.cpp \
         widgets/sidebar.cpp \
         widgets/sidebarunit.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 HEADERS += \
         processing/indata.h \
         mainwindow.h \
+        widgets/tabopen.h \
         widgets/centralwidget.h \
         widgets/sidebar.h \
         widgets/sidebarunit.h \
