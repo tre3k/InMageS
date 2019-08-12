@@ -4,8 +4,11 @@
 #include <QWidget>
 #include <QVector>
 #include <QVBoxLayout>
+#include <QPainter>
 
 #include "sidebarunit.h"
+
+#define MAX_WIDTH 100
 
 class SideBar : public QWidget
 {

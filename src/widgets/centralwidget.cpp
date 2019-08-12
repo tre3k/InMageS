@@ -32,11 +32,14 @@ void CentralWidget::slot_activate(int index){
     for(int i=0;i<widgets.size();i++) widgets.at(i)->hide();
     widgets.at(index)->show();
     sb->unselectUnit(index);            // unselected all units (buttons on left tab) except index. Selection button inside SideBarUnit
+    emit selected(index);
 }
 
+/* activate tab and select unit (not slot) */
 void CentralWidget::activate(int index){
     slot_activate(index);
     sb->selectUnit(index);
+
 }
 
 

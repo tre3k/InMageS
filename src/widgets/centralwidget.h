@@ -22,6 +22,7 @@ private:
     QVector<QWidget *> widgets;
 
 signals:
+    void selected(int);
 
 public slots:
     void addTab(SideBarUnit *sbUnit, QWidget *widget);

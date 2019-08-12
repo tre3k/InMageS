@@ -13,12 +13,22 @@
 #include <QPropertyAnimation>
 #include <QLabel>
 #include <QMenuBar>
+#include <QApplication>
 
 #include "widgets/centralwidget.h"
 #include "widgets/statusbar.h"
 
 #define MAINWINDOW_MINIMUM_W 600
 #define MAINWINDOW_MINIMUM_H 400
+
+enum{
+    TAB_OPEN,
+    TAB_THEORY,
+    TAB_PROCESSING,
+    TAB_SAVE,
+    TAB_HELP,
+    TAB_EXIT
+};
 
 class MainWindow : public QMainWindow{
     Q_OBJECT
@@ -33,7 +43,8 @@ class MainWindow : public QMainWindow{
     StatusBar *sb;
 
   private slots:
-    
+    void mainWidgetActivate(int index);
+
 };
 
 

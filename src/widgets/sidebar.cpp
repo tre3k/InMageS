@@ -11,7 +11,7 @@ SideBar::SideBar(QWidget *parent) : QWidget(parent)
     layout->setSpacing(0);
     layout->setMargin(0);
 
-    this->setMaximumWidth(100);
+    this->setMaximumWidth(MAX_WIDTH);
     /* Palette */
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(BACKGROUND_COLOR));
@@ -32,6 +32,11 @@ void SideBar::addUnit(SideBarUnit *unit){
 
 void SideBar::addStretch(int size){
     layout->addStretch(size);
+    QPixmap spliter(":/icons/split.svg");
+    QLabel *label = new QLabel();
+    label->setAlignment(Qt::AlignHCenter);
+    label->setPixmap(spliter.scaled(70,50,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+    layout->addWidget(label);
 }
 
 void SideBar::unselectUnit(int index){

@@ -8,5 +8,11 @@
         <file alias="processing_n.svg">icons/processing_n.svg</file>
         <file alias="theory_a.svg">icons/theory_a.svg</file>
         <file alias="theory_n.svg">icons/theory_n.svg</file>
+        <file alias="save_a.svg">icons/save_a.svg</file>
+        <file alias="save_n.svg">icons/save_n.svg</file>
+        <file alias="split.svg">icons/split.svg</file>
+        <file alias="exit_a.svg">icons/exit_a.svg</file>
+        <file alias="exit_n.svg">icons/exit_n.svg</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>
