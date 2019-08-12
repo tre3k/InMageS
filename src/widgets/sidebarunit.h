@@ -13,6 +13,8 @@
 #include <QMouseEvent>
 #include <QPropertyAnimation>
 
+#include "statusbar.h"
+
 class SideBarUnit : public QWidget
 {
     Q_OBJECT

@@ -12,14 +12,16 @@ SideBar::SideBar(QWidget *parent) : QWidget(parent)
     layout->setMargin(0);
 
     SideBarUnit *unit1 = new SideBarUnit("Open",":/icons/open_n.svg", ":/icons/open_a.svg");
-    SideBarUnit *unit2 = new SideBarUnit("Test1",":/icons/test1.png", ":/icons/test1.png");
-    SideBarUnit *unit3 = new SideBarUnit("Help",":/icons/help_n.svg", ":/icons/help_a.svg");
+    SideBarUnit *unit3 = new SideBarUnit("Processing",":/icons/processing_n.svg", ":/icons/processing_a.svg");
+    SideBarUnit *unit2 = new SideBarUnit("Theory",":/icons/theory_n.svg", ":/icons/theory_a.svg");
+    SideBarUnit *unit4 = new SideBarUnit("Help",":/icons/help_n.svg", ":/icons/help_a.svg");
 
     addUnit(unit1);
     addUnit(unit2);
-    addStretch(0);
     addUnit(unit3);
 
+    addStretch(0);
+    addUnit(unit4);
 
 
     this->setMaximumWidth(100);

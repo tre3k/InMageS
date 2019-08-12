@@ -4,7 +4,9 @@
         <file alias="help_n.svg">icons/help_n.svg</file>
         <file alias="open_a.svg">icons/open_a.svg</file>
         <file alias="open_n.svg">icons/open_n.svg</file>
-        <file alias="processing_n.svg">icons/processing_a.svg</file>
+        <file alias="processing_a.svg">icons/processing_a.svg</file>
         <file alias="processing_n.svg">icons/processing_n.svg</file>
+        <file alias="theory_a.svg">icons/theory_a.svg</file>
+        <file alias="theory_n.svg">icons/theory_n.svg</file>
     </qresource>
 </RCC>

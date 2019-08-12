@@ -14,6 +14,7 @@
 #include <QLabel>
 
 #include "widgets/centralwidget.h"
+#include "widgets/statusbar.h"
 
 #define MAINWINDOW_MINIMUM_W 600
 #define MAINWINDOW_MINIMUM_H 400
@@ -28,6 +29,7 @@ class MainWindow : public QMainWindow{
   private:
 
     CentralWidget *cw;
+    StatusBar *sb;
 
   private slots:
     
