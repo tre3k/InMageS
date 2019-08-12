@@ -1,6 +1,6 @@
 #include "sidebarunit.h"
 
-SideBarUnit::SideBarUnit(QString text, QString image_path,QWidget *parent) : QWidget(parent)
+SideBarUnit::SideBarUnit(QString text, QString image_path_normal, QString image_path_active,QWidget *parent) : QWidget(parent)
 {
     label = new QLabel();
     label_image = new QLabel();
@@ -18,12 +18,15 @@ SideBarUnit::SideBarUnit(QString text, QString image_path,QWidget *parent) : QWi
     pAnimation->setDuration(100);
 
     setText(text);
-    setImage(image_path);
+    setImage(image_path_normal);
 
-    setPalleteNormal();
+    image_file_active = image_path_active;
+    image_file_normal = image_path_normal;
 
     this->setMouseTracking(false);
     this->setAutoFillBackground(true);
+
+    setPalleteNormal();
 }
 
 
@@ -34,11 +37,13 @@ void SideBarUnit::setText(QString text){
 
 void SideBarUnit::setImage(QString filepath){
     QPixmap image(filepath);
-    label_image->setPixmap(image.scaled(50,50,Qt::KeepAspectRatioByExpanding));
+    label_image->setPixmap(image.scaled(50,50,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+    //label_image->setPixmap(image);
 }
 
 void SideBarUnit::mousePressEvent(QMouseEvent *event){
     setPalleteEnabled();
+    emit clicked(n_index);
 }
 
 void SideBarUnit::mouseReleaseEvent(QMouseEvent *event){
@@ -71,10 +76,12 @@ int SideBarUnit::getIndex(){
 
 /* SLOTS */
 void SideBarUnit::setPalleteNormal(){
+    setImage(image_file_normal);
     setColor("#434343");
 }
 
 void SideBarUnit::setPalleteEnabled(){
+    setImage(image_file_active);
     pAnimation->setStartValue("#434343");
     pAnimation->setEndValue("#131313");
     pAnimation->start();

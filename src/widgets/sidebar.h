@@ -21,6 +21,8 @@ signals:
 
 public slots:
     void addUnit(SideBarUnit *unit);
+    void addStretch(int size);
+    void unitClicked(int index);
 
 };
 

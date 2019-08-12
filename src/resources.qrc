@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="/icons">
-        <file alias="test1.png">icons/test1.png</file>
-        <file alias="test2.png">icons/test2.png</file>
+        <file alias="help_a.svg">icons/help_a.svg</file>
+        <file alias="help_n.svg">icons/help_n.svg</file>
+        <file alias="open_a.svg">icons/open_a.svg</file>
+        <file alias="open_n.svg">icons/open_n.svg</file>
+        <file alias="processing_n.svg">icons/processing_a.svg</file>
+        <file alias="processing_n.svg">icons/processing_n.svg</file>
     </qresource>
 </RCC>

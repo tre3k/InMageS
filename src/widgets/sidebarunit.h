@@ -1,3 +1,7 @@
+/*
+ * This class discribe of buttons on left panel
+ */
+
 #ifndef SIDEBARUNIT_H
 #define SIDEBARUNIT_H
 
@@ -15,7 +19,7 @@ class SideBarUnit : public QWidget
     Q_PROPERTY(QColor color READ color WRITE setColor)
 
 public:
-    explicit SideBarUnit(QString text="", QString image_path="", QWidget *parent = nullptr);
+    explicit SideBarUnit(QString text="", QString image_path_normal="",QString image_path_active="", QWidget *parent = nullptr);
     void setText(QString text);
     void setImage(QString filepath);
     void setIndex(int index);
@@ -35,8 +39,9 @@ private:
     QLabel *label_image;
     QPropertyAnimation *pAnimation;
 
-    int n_index = 0;
+    QString image_file_normal, image_file_active;
 
+    int n_index = 0;
 
 signals:
     void clicked(int);

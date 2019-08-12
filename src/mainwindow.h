@@ -15,6 +15,9 @@
 
 #include "widgets/centralwidget.h"
 
+#define MAINWINDOW_MINIMUM_W 600
+#define MAINWINDOW_MINIMUM_H 400
+
 class MainWindow : public QMainWindow{
     Q_OBJECT
 

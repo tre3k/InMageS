@@ -11,6 +11,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     cw = new CentralWidget();
 
     this->setCentralWidget(cw);
+    this->setWindowTitle("InMageS - Inelastic Magnet Scattering");
+    this->setMinimumWidth(MAINWINDOW_MINIMUM_W);
+    this->setMinimumHeight(MAINWINDOW_MINIMUM_H);
+
+
 
     return;
 }

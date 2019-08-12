@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 57 57"
+   height="57mm"
+   width="57mm"
+   sodipodi:docname="help_a.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1918"
+     inkscape:window-height="1048"
+     id="namedview6370"
+     showgrid="false"
+     inkscape:zoom="1.5492255"
+     inkscape:cx="-104.88915"
+     inkscape:cy="114.1286"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg8" />
+  <defs
+     id="defs2">
+    <filter
+       id="filter5182"
+       style="color-interpolation-filters:sRGB;">
+      <feGaussianBlur
+         id="feGaussianBlur5176"
+         in="SourceGraphic"
+         stdDeviation="3"
+         result="result6" />
+      <feColorMatrix
+         id="feColorMatrix5178"
+         in="SourceGraphic"
+         result="result7"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 " />
+      <feComposite
+         id="feComposite5180"
+         in2="result7"
+         in="result6"
+         operator="in" />
+    </filter>
+    <filter
+       id="filter5252"
+       x="-0.1"
+       y="-0.1"
+       width="1.2"
+       height="1.2"
+       style="color-interpolation-filters:sRGB;">
+      <feTurbulence
+         id="feTurbulence5234"
+         result="result1"
+         numOctaves="3"
+         baseFrequency="1"
+         type="fractalNoise"
+         seed="50" />
+      <feColorMatrix
+         id="feColorMatrix5236"
+         result="result0"
+         in="SourceGraphic"
+         type="luminanceToAlpha" />
+      <feColorMatrix
+         id="feColorMatrix5238"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0 "
+         result="result2" />
+      <feComposite
+         id="feComposite5240"
+         in2="result2"
+         in="result1"
+         operator="over"
+         result="result3" />
+      <feColorMatrix
+         id="feColorMatrix5242"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 5 -3.2"
+         result="result91" />
+      <feComposite
+         id="feComposite5244"
+         result="result93"
+         k1="1.5"
+         operator="arithmetic"
+         in2="result91" />
+      <feComposite
+         id="feComposite5246"
+         result="result4"
+         operator="out"
+         in="SourceGraphic"
+         in2="result93" />
+      <feComposite
+         id="feComposite5248"
+         k1="1"
+         k2="0.5"
+         operator="arithmetic"
+         in2="result4" />
+      <feDisplacementMap
+         id="feDisplacementMap5250"
+         result="result92"
+         in2="result1"
+         yChannelSelector="A"
+         xChannelSelector="R"
+         scale="15" />
+    </filter>
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-240)"
+     id="layer1"
+     style="fill:#90e09d;fill-opacity:1">
+    <g
+       transform="translate(-77.044447,177.95211)"
+       style="fill:#90e09d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="g888" />
+    <g
+       style="stroke:#000000;stroke-opacity:1;stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;fill:#90e09d;fill-opacity:1"
+       id="g5085">
+      <path
+         style="fill:#90e09d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 37.57084,271.60001 c -6.349458,4.38042 -5.077781,5.97293 -5.077781,8.61877 10e-7,6.61458 -7.937499,6.61458 -7.9375,0 l 1e-6,-3.96875 c 1e-6,-6.61459 5.027083,-6.08542 9.525,-10.31876 0,0 3.34123,-2.64367 3.30863,-6.53433 -0.13363,-15.95525 -16.008629,-13.30942 -16.00863,-1.40317 0,6.61459 -7.937505,6.61459 -7.937506,0 10e-7,-22.48958 31.750006,-22.48958 31.750006,0 0,5.29167 -1.32292,9.26042 -7.62222,13.60624 z"
+         id="path817" />
+      <path
+         style="fill:#90e09d;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 24.026393,291.06669 c 0,5.29166 7.9375,5.29166 7.937499,0 -1e-6,-5.29167 -7.937499,-5.29167 -7.937499,0 z"
+         id="path892" />
+    </g>
+  </g>
+</svg>
