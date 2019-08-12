@@ -10,6 +10,8 @@ SOURCES += \
         processing/indata.cpp \
         main.cpp \
         mainwindow.cpp \
+        threads/statusbarthread.cpp \
+        widgets/basewidget.cpp \
         widgets/tabhelp.cpp \
         widgets/tabopen.cpp \
         widgets/centralwidget.cpp \
@@ -23,6 +25,8 @@ SOURCES += \
 HEADERS += \
         processing/indata.h \
         mainwindow.h \
+        threads/statusbarthread.h \
+        widgets/basewidget.h \
         widgets/tabhelp.h \
         widgets/tabopen.h \
         widgets/centralwidget.h \

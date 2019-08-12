@@ -6,11 +6,13 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
-class TabHelp : public QWidget
+#include "basewidget.h"
+
+class TabHelp : public BaseWidget
 {
     Q_OBJECT
 public:
-    explicit TabHelp(QWidget *parent = nullptr);
+    explicit TabHelp(StatusBarThread *sbt=NULL, QWidget *parent = nullptr);
 
 private:
     QVBoxLayout *layout;

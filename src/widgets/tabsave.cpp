@@ -1,6 +1,6 @@
 #include "tabsave.h"
 
-TabSave::TabSave(QWidget *parent) : QWidget(parent)
+TabSave::TabSave(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
 {
 
 }

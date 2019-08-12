@@ -3,6 +3,7 @@
 
 #include <QStatusBar>
 #include <QDebug>
+#include <QProgressBar>
 
 #include "sidebarunit.h"  // Just for BACKGROUND_COLOR
 
@@ -12,6 +13,17 @@ class StatusBar : public QStatusBar
 public:
     StatusBar(QWidget *parent = nullptr);
     ~StatusBar();
+
+    int getProgressBar(void);
+
+private:
+    QProgressBar *progressBar;
+
+public slots:
+    void showProgressBar();
+    void hideProgressBar();
+    void setProgressBar(int value);
+
 };
 
 

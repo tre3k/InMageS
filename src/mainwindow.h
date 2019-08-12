@@ -14,6 +14,7 @@
 #include <QLabel>
 #include <QMenuBar>
 #include <QApplication>
+#include <QMessageBox>
 
 #include "widgets/centralwidget.h"
 #include "widgets/statusbar.h"
@@ -24,6 +25,8 @@
 #include "widgets/tabprocessing.h"
 #include "widgets/tabsave.h"
 #include "widgets/tabhelp.h"
+
+#include "threads/statusbarthread.h"
 
 
 #define MAINWINDOW_MINIMUM_W 600
@@ -49,9 +52,13 @@ class MainWindow : public QMainWindow{
 
     CentralWidget *cw;
     StatusBar *sb;
+    StatusBarThread *sbt;
 
   private slots:
     void mainWidgetActivate(int index);
+
+  signals:
+    void sendStatusBarLink(StatusBar *lnk);
 
 };
 

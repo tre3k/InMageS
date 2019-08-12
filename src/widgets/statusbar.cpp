@@ -7,8 +7,32 @@ StatusBar::StatusBar(QWidget *parent) : QStatusBar(parent)
     pal.setColor(QPalette::WindowText, QColor(Qt::white));
     this->setAutoFillBackground(true);
     this->setPalette(pal);
+
+    progressBar = new QProgressBar();
+    progressBar->setMaximumWidth(100);
+    progressBar->setMaximumHeight(14);
+
+    this->addPermanentWidget(progressBar);
+
+    progressBar->hide();
 }
 
 StatusBar::~StatusBar(){
 
+}
+
+int StatusBar::getProgressBar(){
+    return progressBar->value();
+}
+
+void StatusBar::showProgressBar(){
+    progressBar->show();
+}
+
+void StatusBar::hideProgressBar(){
+    progressBar->hide();
+}
+
+void StatusBar::setProgressBar(int value){
+    progressBar->setValue(value);
 }

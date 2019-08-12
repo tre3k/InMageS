@@ -1,6 +1,6 @@
 #include "tabtheory.h"
 
-TabTheory::TabTheory(QWidget *parent) : QWidget(parent)
+TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
 {
 
 }

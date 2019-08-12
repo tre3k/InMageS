@@ -1,6 +1,6 @@
 #include "tabprocessing.h"
 
-TabProcessing::TabProcessing(QWidget *parent) : QWidget(parent)
+TabProcessing::TabProcessing(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
 {
 
 }

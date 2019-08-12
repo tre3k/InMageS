@@ -1,13 +1,13 @@
 #ifndef TABTHEORY_H
 #define TABTHEORY_H
 
-#include <QWidget>
+#include "basewidget.h"
 
-class TabTheory : public QWidget
+class TabTheory : public BaseWidget
 {
     Q_OBJECT
 public:
-    explicit TabTheory(QWidget *parent = nullptr);
+    explicit TabTheory(StatusBarThread *sbt=NULL, QWidget *parent = nullptr);
 
 signals:
 

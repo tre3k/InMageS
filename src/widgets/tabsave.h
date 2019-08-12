@@ -1,13 +1,13 @@
 #ifndef TABSAVE_H
 #define TABSAVE_H
 
-#include <QWidget>
+#include "basewidget.h"
 
-class TabSave : public QWidget
+class TabSave : public BaseWidget
 {
     Q_OBJECT
 public:
-    explicit TabSave(QWidget *parent = nullptr);
+    explicit TabSave(StatusBarThread *sbt=NULL, QWidget *parent = nullptr);
 
 signals:
 
