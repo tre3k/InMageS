@@ -18,6 +18,8 @@ public:
     explicit SideBarUnit(QString text="", QString image_path="", QWidget *parent = nullptr);
     void setText(QString text);
     void setImage(QString filepath);
+    void setIndex(int index);
+    int getIndex(void);
 
     void setColor(QColor color);
     QColor color();
@@ -33,8 +35,11 @@ private:
     QLabel *label_image;
     QPropertyAnimation *pAnimation;
 
+    int n_index = 0;
+
 
 signals:
+    void clicked(int);
 
 public slots:
     void setPalleteNormal();

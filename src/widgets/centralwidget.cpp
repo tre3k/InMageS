@@ -6,6 +6,7 @@ CentralWidget::CentralWidget(QWidget *parent) : QWidget(parent)
     layout = new QHBoxLayout();
     this->setLayout(layout);
     layout->addWidget(sb);
+    layout->itemAt(0)->setAlignment(Qt::AlignLeft);
 
     layout->setMargin(0);
 }

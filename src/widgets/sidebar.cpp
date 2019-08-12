@@ -22,7 +22,7 @@ SideBar::SideBar(QWidget *parent) : QWidget(parent)
     this->setMaximumWidth(100);
     /* Palette */
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor("#232323"));
+    pal.setColor(QPalette::Background, QColor("#434343"));
     this->setAutoFillBackground(true);
     this->setPalette(pal);
 

@@ -15,14 +15,14 @@ SideBarUnit::SideBarUnit(QString text, QString image_path,QWidget *parent) : QWi
     layout->addWidget(label);
 
     pAnimation = new QPropertyAnimation(this,"color");
-    pAnimation->setDuration(1000);
+    pAnimation->setDuration(100);
 
     setText(text);
     setImage(image_path);
 
     setPalleteNormal();
 
-    this->setMouseTracking(true);
+    this->setMouseTracking(false);
     this->setAutoFillBackground(true);
 }
 
@@ -38,21 +38,15 @@ void SideBarUnit::setImage(QString filepath){
 }
 
 void SideBarUnit::mousePressEvent(QMouseEvent *event){
-    qDebug() << "press";
     setPalleteEnabled();
 }
 
 void SideBarUnit::mouseReleaseEvent(QMouseEvent *event){
-    qDebug() << "release";
+    /* RESERVATION */
 }
 
 void SideBarUnit::mouseMoveEvent(QMouseEvent *event){
-    if(this->rect().contains(event->pos())){
-        setPalleteSelected();
-
-    }else{
-        //setPalleteNormal();
-    }
+    /* RESERVATION */
 }
 
 void SideBarUnit::setColor(QColor color){
@@ -67,45 +61,26 @@ QColor SideBarUnit::color(){
     return Qt::black;
 }
 
+void SideBarUnit::setIndex(int index){
+    n_index = index;
+}
+
+int SideBarUnit::getIndex(){
+    return n_index;
+}
 
 /* SLOTS */
 void SideBarUnit::setPalleteNormal(){
-    /*
-    QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor("#232323"));
-    pal.setColor(QPalette::WindowText, QColor(Qt::white));
-
-    this->setPalette(pal);
-    */
-
-    setColor("#232323");
+    setColor("#434343");
 }
 
 void SideBarUnit::setPalleteEnabled(){
-    /*
-    QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor("#131313"));
-    pal.setColor(QPalette::WindowText, QColor(Qt::white));
-    this->setAutoFillBackground(true);
-    this->setPalette(pal);
-    */
-
-    pAnimation->setStartValue("#232323");
-    pAnimation->setEndValue("#535353");
+    pAnimation->setStartValue("#434343");
+    pAnimation->setEndValue("#131313");
     pAnimation->start();
 }
 
 void SideBarUnit::setPalleteSelected(){
-
-    /*
-    QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor("#535353"));
-    pal.setColor(QPalette::WindowText, QColor(Qt::white));
-    this->setAutoFillBackground(true);
-    this->setPalette(pal);
-    */
-
-
-
+    /* RESERVATION */
 
 }
