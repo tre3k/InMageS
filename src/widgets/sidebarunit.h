@@ -13,7 +13,11 @@
 #include <QMouseEvent>
 #include <QPropertyAnimation>
 
-#include "statusbar.h"
+#define BACKGROUND_COLOR "#434343"
+#define HIGHLIGHTED_COLOR "#575757"   // RESERVATION
+#define BACKLIGHT_COLOR "#232323"
+
+#define DURATION_ANIMATION 300          // in ms
 
 class SideBarUnit : public QWidget
 {
@@ -51,6 +55,7 @@ signals:
 public slots:
     void setPalleteNormal();
     void setPalleteSelected();
+    void setPalleteSelectedWithoutAnimation();
     void setPalleteEnabled();
 
 };

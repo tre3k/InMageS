@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QPropertyAnimation>
 #include <QLabel>
+#include <QMenuBar>
 
 #include "widgets/centralwidget.h"
 #include "widgets/statusbar.h"

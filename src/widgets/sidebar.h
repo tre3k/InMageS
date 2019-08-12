@@ -12,12 +12,15 @@ class SideBar : public QWidget
     Q_OBJECT
 public:
     explicit SideBar(QWidget *parent = nullptr);
+    void unselectUnit(int index);
+    void selectUnit(int index);
 
 private:
     QVBoxLayout *layout;
     QVector<SideBarUnit *> *unit_list;
 
 signals:
+    void clickedUnit(int);
 
 public slots:
     void addUnit(SideBarUnit *unit);

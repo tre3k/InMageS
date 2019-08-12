@@ -2,6 +2,7 @@
 
 SideBarUnit::SideBarUnit(QString text, QString image_path_normal, QString image_path_active,QWidget *parent) : QWidget(parent)
 {
+    /* initilization */
     label = new QLabel();
     label_image = new QLabel();
     layout = new QVBoxLayout();
@@ -15,7 +16,7 @@ SideBarUnit::SideBarUnit(QString text, QString image_path_normal, QString image_
     layout->addWidget(label);
 
     pAnimation = new QPropertyAnimation(this,"color");
-    pAnimation->setDuration(100);
+    pAnimation->setDuration(DURATION_ANIMATION);
 
     setText(text);
     setImage(image_path_normal);
@@ -26,6 +27,7 @@ SideBarUnit::SideBarUnit(QString text, QString image_path_normal, QString image_
     this->setMouseTracking(false);
     this->setAutoFillBackground(true);
 
+    // set background color also as sidebar RGB #434343
     setPalleteNormal();
 }
 
@@ -76,15 +78,21 @@ int SideBarUnit::getIndex(){
 
 /* SLOTS */
 void SideBarUnit::setPalleteNormal(){
+    pAnimation->stop();
     setImage(image_file_normal);
-    setColor("#434343");
+    setColor(BACKGROUND_COLOR);
 }
 
 void SideBarUnit::setPalleteEnabled(){
     setImage(image_file_active);
-    pAnimation->setStartValue("#434343");
-    pAnimation->setEndValue("#131313");
+    pAnimation->setStartValue(BACKGROUND_COLOR);
+    pAnimation->setEndValue(BACKLIGHT_COLOR);
     pAnimation->start();
+}
+
+void SideBarUnit::setPalleteSelectedWithoutAnimation(){
+    setImage(image_file_active);
+    setColor(QColor(BACKLIGHT_COLOR));
 }
 
 void SideBarUnit::setPalleteSelected(){

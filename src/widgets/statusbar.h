@@ -4,6 +4,7 @@
 #include <QStatusBar>
 #include <QDebug>
 
+#include "sidebarunit.h"  // Just for BACKGROUND_COLOR
 
 class StatusBar : public QStatusBar
 {
