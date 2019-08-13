@@ -1,7 +1,8 @@
 QT += \
-  core \
-  gui \
-  widgets
+       core \
+       gui \
+       widgets \
+       printsupport
 
 TARGET = inmages
 TEMPLATE = app
@@ -13,6 +14,8 @@ SOURCES += \
         processing/swtheory.cpp \
         threads/statusbarthread.cpp \
         widgets/basewidget.cpp \
+        widgets/plots/plot.cpp \
+        widgets/plots/qcustomplot.cpp \
         widgets/tabhelp.cpp \
         widgets/tabopen.cpp \
         widgets/centralwidget.cpp \
@@ -29,6 +32,8 @@ HEADERS += \
         processing/swtheory.h \
         threads/statusbarthread.h \
         widgets/basewidget.h \
+        widgets/plots/plot.h \
+        widgets/plots/qcustomplot.h \
         widgets/tabhelp.h \
         widgets/tabopen.h \
         widgets/centralwidget.h \
@@ -40,4 +45,4 @@ HEADERS += \
         widgets/tabtheory.h
 
 RESOURCES += \
-    resources.qrc
+        resources.qrc

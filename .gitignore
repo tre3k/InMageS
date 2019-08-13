@@ -1,8 +1,5 @@
 build
 build-clang
-binary/linux-x86_64/*.o
-binary/linux-x86_64/*.cpp
-binary/linux-x86_64/*.h
-binary/linux-x86_64/Makefile
-binary/linux-x86_64/.qmake.stash
+release
+release-clang
 src/InMageS.pro.user
