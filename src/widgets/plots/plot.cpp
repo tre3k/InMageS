@@ -54,6 +54,7 @@ void Plot::slot_selectionChanged(){
         this->xAxis2->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
         this->xAxis->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
       }
+    //sb->showMessage("Ready");
 
       // make left and right axes be selected synchronously, and handle axis and tick labels as one selectable object:
       if (this->yAxis->selectedParts().testFlag(QCPAxis::spAxis) || this->yAxis->selectedParts().testFlag(QCPAxis::spTickLabels) ||
@@ -86,6 +87,20 @@ void Plot::slot_contextMenuReq(QPoint p){
 
     menu_export->addAction("bmp",this,SLOT(exportToBMP()));
     menu_export->addAction("jpg",this,SLOT(exportToJPG()));
+    menu_export->addAction("pdf",this,SLOT(exportToPDF()));
+    menu_export->addAction("png",this,SLOT(exportToPNG()));
+
+    if(!x_log){
+        menu->addAction("x log scale",this,SLOT(setXLog()));
+    }else{
+        menu->addAction("x linear scale",this,SLOT(setXLog()));
+    }
+
+    if(!y_log){
+        menu->addAction("y log scale",this,SLOT(setYLog()));
+    }else{
+        menu->addAction("y linear scale",this,SLOT(setYLog()));
+    }
 
     menu->popup(this->mapToGlobal(p));
 }
@@ -99,9 +114,33 @@ void Plot::exportToJPG(){
 }
 
 void Plot::exportToPDF(){
-
+    this->savePdf(QFileDialog::getSaveFileName(nullptr,"Save",".pdf","(*.pdf *.PDF)"));
 }
 
 void Plot::exportToPNG(){
+    this->savePng(QFileDialog::getSaveFileName(nullptr,"Save",".png","(*.png *.PNG)"));
+}
 
+void Plot::setYLog(){
+    y_log = !y_log;
+    if(y_log){
+        this->yAxis->setScaleType(QCPAxis::stLogarithmic);
+        this->yAxis2->setScaleType(QCPAxis::stLogarithmic);
+    }else{
+        this->yAxis->setScaleType(QCPAxis::stLinear);
+        this->yAxis2->setScaleType(QCPAxis::stLinear);
+    }
+    this->replot();
+}
+
+void Plot::setXLog(){
+    x_log = !x_log;
+    if(x_log){
+        this->xAxis->setScaleType(QCPAxis::stLogarithmic);
+        this->xAxis2->setScaleType(QCPAxis::stLogarithmic);
+    }else{
+        this->xAxis->setScaleType(QCPAxis::stLinear);
+        this->xAxis2->setScaleType(QCPAxis::stLinear);
+    }
+    this->replot();
 }

@@ -22,8 +22,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
             sbt,SLOT(recvLinkToStatusBar(StatusBar *)));
     emit sendStatusBarLink(sb);
 
-    //sb->showMessage("Ready");
-
     /* set tabs to central widget */
     SideBarUnit *open_unit = new SideBarUnit("Open",":/icons/open_n.svg", ":/icons/open_a.svg");
     SideBarUnit *processing_unit = new SideBarUnit("Processing",":/icons/processing_n.svg", ":/icons/processing_a.svg");

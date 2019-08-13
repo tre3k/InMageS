@@ -10,6 +10,10 @@ public:
     Plot(QWidget *parent=nullptr);
     ~Plot();
 
+private:
+    bool x_log = false;
+    bool y_log = false;
+
 private slots:
     void slot_sAxies_drag_zoom(QCPAxis *,QCPAxis::SelectablePart,QMouseEvent *);
     void slot_full_drag_zoom(QMouseEvent *);
@@ -20,6 +24,9 @@ private slots:
     void exportToBMP();
     void exportToJPG();
     void exportToPNG();
+
+    void setXLog();
+    void setYLog();
 
 };
 
