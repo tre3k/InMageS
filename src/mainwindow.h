@@ -15,6 +15,7 @@
 #include <QMenuBar>
 #include <QApplication>
 #include <QMessageBox>
+#include <QDesktopWidget>
 
 #include "widgets/centralwidget.h"
 #include "widgets/statusbar.h"
@@ -31,6 +32,9 @@
 
 #define MAINWINDOW_MINIMUM_W 600
 #define MAINWINDOW_MINIMUM_H 400
+
+#define MAINWINDOW_DEFAULT_W 1024
+#define MAINWINDOW_DEFAULT_H 768
 
 enum{
     TAB_OPEN,
@@ -49,13 +53,14 @@ class MainWindow : public QMainWindow{
     ~MainWindow();
 
   private:
-
     CentralWidget *cw;
     StatusBar *sb;
     StatusBarThread *sbt;
+    QMenuBar *menuBar;
 
   private slots:
     void mainWidgetActivate(int index);
+    void quit();
 
   signals:
     void sendStatusBarLink(StatusBar *lnk);

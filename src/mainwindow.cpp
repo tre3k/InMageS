@@ -28,9 +28,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     SideBarUnit *open_unit = new SideBarUnit("Open",":/icons/open_n.svg", ":/icons/open_a.svg");
     SideBarUnit *processing_unit = new SideBarUnit("Processing",":/icons/processing_n.svg", ":/icons/processing_a.svg");
     SideBarUnit *theory_unit = new SideBarUnit("Theory",":/icons/theory_n.svg", ":/icons/theory_a.svg");
-    SideBarUnit *help_unit = new SideBarUnit("Help",":/icons/help_n.svg", ":/icons/help_a.svg");
+    SideBarUnit *help_unit = new SideBarUnit("About",":/icons/help_n.svg", ":/icons/help_a.svg");
     SideBarUnit *save_unit = new SideBarUnit("Save", ":/icons/save_n.svg", ":/icons/save_a.svg");
-    SideBarUnit *exit_unit = new SideBarUnit("Exit", ":/icons/exit_a.svg", ":/icons/exit_a.svg");
+    SideBarUnit *exit_unit = new SideBarUnit("Exit", ":/icons/exit_n.svg", ":/icons/exit_a.svg");
 
     TabOpen *open_widget = new TabOpen(sbt);
     TabTheory *theory_widget = new TabTheory(sbt);
@@ -49,15 +49,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     cw->activate(0);
 
 
-
     /* MainWindow propery */
     this->setWindowTitle("InMageS - Inelastic Magnet Scattering");
     this->setMinimumWidth(MAINWINDOW_MINIMUM_W);
     this->setMinimumHeight(MAINWINDOW_MINIMUM_H);
 
+    //Default
+    QDesktopWidget dw;
+    this->setGeometry(dw.width()/2-dw.width()*0.7/2,dw.height()/2-dw.height()*0.7/2,
+                      dw.width()*0.7,dw.height()*0.7);
 
     connect(cw,SIGNAL(selected(int)),
             this,SLOT(mainWidgetActivate(int)));
+
+    /* MenuBar */
+    menuBar = new QMenuBar();
+    QMenu *menuFile = new QMenu("&File");
+    QAction *actionExit = new QAction("E&xit");
+    actionExit->setIcon(QIcon(":/icons/exit_a.svg"));
+    menuFile->addAction(actionExit);
+
+    menuBar->addMenu(menuFile);
+    this->setMenuBar(menuBar);
+
+    connect(actionExit,SIGNAL(triggered()),
+            this,SLOT(quit()));
+
+    sb->showMessage("Ready");
     return;
 }
 
@@ -71,10 +89,14 @@ void MainWindow::mainWidgetActivate(int index){
         break;
 
     case TAB_EXIT:
-        QMessageBox::StandardButton reply = QMessageBox::question(nullptr,"Are you seriously?","You want to quit?",QMessageBox::Yes|QMessageBox::No);
-        if(reply==QMessageBox::Yes){
-            QApplication::quit();
-        }
+        quit();
         break;
+    }
+}
+
+void MainWindow::quit(){
+    QMessageBox::StandardButton reply = QMessageBox::question(nullptr,"Are you seriously?","You want to quit?",QMessageBox::Yes|QMessageBox::No);
+    if(reply==QMessageBox::Yes){
+        QApplication::quit();
     }
 }

@@ -16,10 +16,12 @@ public:
 
 private:
     QVBoxLayout *layout;
+    QPushButton *helpButton;
 
 signals:
 
 public slots:
+    void helpButtonClick();
 };
 
 #endif // TABHELP_H
