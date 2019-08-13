@@ -13,9 +13,13 @@ TabHelp::TabHelp(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt,parent)
                 "Petersburg Nuclear Physics Institute named by B.P.Konstantinov of NRC «Kurchatov Institute» PNPI<br>"
                 "Saint-Petersburg State University<br>"
                 "Autor: Kirill Pshenichnyi (pshcyrill@mail.ru)<br>");
-    QLabel *label_license =new QLabel("GNU GPLv3, Source code: <a href=\"https://github.com/tre3k/InMageS\">GitHub: https://github.com/tre3k/InMageS</a>");
     label_copyright->setTextInteractionFlags(Qt::TextSelectableByMouse);
     label_copyright->setAlignment(Qt::AlignLeft);
+
+    QLabel *label_license =new QLabel("GNU GPLv3, Source code: <a href=\"https://github.com/tre3k/InMageS\">GitHub: https://github.com/tre3k/InMageS</a>");
+    label_license->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    label_license->setOpenExternalLinks(true);
+
     layout->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 
     layout->addWidget(label_top);
