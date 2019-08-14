@@ -1,3 +1,10 @@
+/* mainwindow.h
+ * Copyright 2019 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analytical data and processing experemental data
+ */
+
 #include "sidebarunit.h"
 
 SideBarUnit::SideBarUnit(QString text, QString image_path_normal, QString image_path_active,QWidget *parent) : QWidget(parent)

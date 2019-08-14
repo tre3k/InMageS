@@ -1,3 +1,10 @@
+/* mainwindow.h
+ * Copyright 2019 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analytical data and processing experemental data
+ */
+
 #include "plot.h"
 
 Plot::Plot(QWidget *parent) : QCustomPlot(parent)
@@ -106,19 +113,23 @@ void Plot::slot_contextMenuReq(QPoint p){
 }
 
 void Plot::exportToBMP(){
-    this->saveBmp(QFileDialog::getSaveFileName(nullptr,"Save",".bmp","(*.bmp *.BMP)"));
+    auto filename = QFileDialog::getSaveFileName(nullptr,"Save",".bmp","(*.bmp *.BMP)");
+    if(filename!=nullptr) this->saveBmp(filename);
 }
 
 void Plot::exportToJPG(){
-    this->saveJpg(QFileDialog::getSaveFileName(nullptr,"Save",".jpg","(*.jpg *.JPG *.jepg)"));
+    auto filename = QFileDialog::getSaveFileName(nullptr,"Save",".jpg","(*.jpg *.JPG)");
+    if(filename!=nullptr) this->saveJpg(filename);
 }
 
 void Plot::exportToPDF(){
-    this->savePdf(QFileDialog::getSaveFileName(nullptr,"Save",".pdf","(*.pdf *.PDF)"));
+    auto filename = QFileDialog::getSaveFileName(nullptr,"Save",".pdf","(*.pdf *.PDF)");
+    if(filename!=nullptr) this->savePdf(filename);
 }
 
 void Plot::exportToPNG(){
-    this->savePng(QFileDialog::getSaveFileName(nullptr,"Save",".png","(*.png *.PNG)"));
+    auto filename = QFileDialog::getSaveFileName(nullptr,"Save",".png","(*.png *.PNG)");
+    if(filename!=nullptr) this->savePng(filename);
 }
 
 void Plot::setYLog(){

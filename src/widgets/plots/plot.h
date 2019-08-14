@@ -1,3 +1,10 @@
+/* mainwindow.h
+ * Copyright 2019 13 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analitical data and processing experemental data
+ */
+
 #ifndef PLOT_H
 #define PLOT_H
 
@@ -14,7 +21,7 @@ private:
     bool x_log = false;
     bool y_log = false;
 
-private slots:
+protected slots:
     void slot_sAxies_drag_zoom(QCPAxis *,QCPAxis::SelectablePart,QMouseEvent *);
     void slot_full_drag_zoom(QMouseEvent *);
     void slot_selectionChanged();

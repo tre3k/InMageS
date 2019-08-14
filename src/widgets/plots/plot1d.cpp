@@ -5,9 +5,9 @@
  * Software for Build analytical data and processing experemental data
  */
 
-#include "swtheory.h"
+#include "plot1d.h"
 
-SWTheory::SWTheory()
+Plot1D::Plot1D(QWidget *parent) : QWidget(parent)
 {
 
 }

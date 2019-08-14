@@ -29,6 +29,9 @@
 
 #include "threads/statusbarthread.h"
 
+#include "processing/data2d.h"
+#include "processing/neutrondata.h"
+
 
 #define MAINWINDOW_MINIMUM_W 600
 #define MAINWINDOW_MINIMUM_H 400

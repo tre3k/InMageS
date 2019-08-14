@@ -5,15 +5,16 @@
  * Software for Build analitical data and processing experemental data
  */
 
+#ifndef PLOT1D_H
+#define PLOT1D_H
 
-#ifndef SWTHEORY_H
-#define SWTHEORY_H
+#include <QWidget>
+#include "plot.h"
 
-
-class SWTheory
+class Plot1D : public QWidget
 {
 public:
-    SWTheory();
+    Plot1D(QWidget *parent = nullptr);
 };
 
-#endif // SWTHEORY_H
+#endif // PLOT1D_H

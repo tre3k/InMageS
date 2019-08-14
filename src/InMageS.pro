@@ -8,13 +8,15 @@ TARGET = inmages
 TEMPLATE = app
 
 SOURCES += \
-        processing/indata.cpp \
         main.cpp \
         mainwindow.cpp \
+        processing/data2d.cpp \
+        processing/neutrondata.cpp \
         processing/swtheory.cpp \
         threads/statusbarthread.cpp \
         widgets/basewidget.cpp \
         widgets/plots/plot.cpp \
+        widgets/plots/plot1d.cpp \
         widgets/plots/qcustomplot.cpp \
         widgets/tabhelp.cpp \
         widgets/tabopen.cpp \
@@ -27,12 +29,14 @@ SOURCES += \
         widgets/tabtheory.cpp
 
 HEADERS += \
-        processing/indata.h \
         mainwindow.h \
+        processing/data2d.h \
+        processing/neutrondata.h \
         processing/swtheory.h \
         threads/statusbarthread.h \
         widgets/basewidget.h \
         widgets/plots/plot.h \
+        widgets/plots/plot1d.h \
         widgets/plots/qcustomplot.h \
         widgets/tabhelp.h \
         widgets/tabopen.h \

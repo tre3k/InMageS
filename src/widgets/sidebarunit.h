@@ -1,4 +1,9 @@
-/*
+/* mainwindow.h
+ * Copyright 2019 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analitical data and processing experemental data
+ *
  * This class discribe of buttons on left panel
  */
 

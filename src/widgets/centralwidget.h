@@ -1,3 +1,10 @@
+/* mainwindow.h
+ * Copyright 2019 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analitical data and processing experemental data
+ */
+
 #ifndef CENTRALWIDGET_H
 #define CENTRALWIDGET_H
 
