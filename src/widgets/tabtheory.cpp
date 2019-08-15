@@ -13,7 +13,7 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
     top_layout = new QGridLayout();
     this->setLayout(top_layout);
 
-    plot_map = new Plot2D();
+    plot_map = new Plot2D(sbt);
     plot_average = new Plot();
 
 
@@ -28,5 +28,18 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
     top_layout->addWidget(splitter,0,0);
     //top_layout->addWidget(plot_average,0,1);
     //top_layout->addWidget(plot_map,0,0);
+
+
+
+    /* test plot2D */
+    NeutronData *nd = new NeutronData(128,128);
+    for(int i=0;i<128;i++){
+        for(int j=0;j<128;j++){
+            nd->data_matrix->set(i,j,sin(i*0.013*2*M_PI));
+        }
+    }
+
+    plot_map->buildNeutronData(nd);
+
 }
 

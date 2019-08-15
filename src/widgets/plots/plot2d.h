@@ -16,15 +16,25 @@
 #include <QComboBox>
 
 #include "plot.h"
+#include "widgets/basewidget.h"
 #include "processing/neutrondata.h"
 
-class Plot2D : public QWidget
+enum Units{
+    UNIT_PIXEL,
+    UNIT_ANGSTROM,
+    UNIT_NM,
+    UNIT_THETA
+};
+
+class Plot2D : public BaseWidget
 {
     Q_OBJECT
 public:
-    explicit Plot2D(QWidget *parent = nullptr);
+    explicit Plot2D(StatusBarThread *sbt=NULL, QWidget *parent = nullptr);
 
     void buildNeutronData(NeutronData *n_data);
+    void buildNeutronData(void);
+    void setNeutronData(NeutronData *n_data);
 
 protected:
     Plot *plot;
@@ -41,11 +51,14 @@ protected:
     QCPColorMap *colorMap;
     QCPColorScale *colorScale;
 
+    NeutronData *neutron_data;
+
 
 signals:
 
 public slots:
     void logScale(bool state);
+    void hold(bool state);
     void setHoldRange();
 };
 

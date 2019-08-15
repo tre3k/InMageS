@@ -74,17 +74,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     connect(actionExit,SIGNAL(triggered()),
             this,SLOT(quit()));
 
-    sb->showMessage("Ready");
-
-
-    NeutronData *nd = new NeutronData(128,128);
-    nd->lambda = 5.1;
-    nd->update_ki_Ei();
-
-    qDebug() << "ki = " << nd->get_ki_nm() << " 1/nm";
-    qDebug() << "E = " << nd->getEi_Joul() << " Joul";
-    qDebug() << "E = " << nd->getEi_meV() << " meV";
-    qDebug() << "E = " << nd->getEi_K() << " K";
+    sbt->showMessage("Ready");
 
     return;
 }

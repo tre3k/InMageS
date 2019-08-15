@@ -45,4 +45,10 @@ double NeutronData::getEi_meV(){
     return getEi_Joul()*1000/ce();
 }
 
+unsigned long int NeutronData::size_Nx(){
+    return Nx;
+}
 
+unsigned long int NeutronData::size_Ny(){
+    return Ny;
+}

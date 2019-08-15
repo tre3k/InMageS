@@ -42,8 +42,8 @@ public:
         return cPlank()*value/2/M_PI;
     }
 
-    unsigned long size_Nx(void);
-    unsigned long size_Ny(void);
+    unsigned long int size_Nx(void);
+    unsigned long int size_Ny(void);
 
 public:
     double D;               // distance soruce to detetctor                      [m]
