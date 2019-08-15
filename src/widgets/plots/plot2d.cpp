@@ -47,6 +47,10 @@ Plot2D::Plot2D(QWidget *parent) : QWidget(parent)
 
     connect(check_log_scale,SIGNAL(clicked(bool)),
             this,SLOT(logScale(bool)));
+    connect(spinBoxMax,SIGNAL(valueChanged(double)),
+            this,SLOT(setHoldRange()));
+    connect(spinBoxMin,SIGNAL(valueChanged(double)),
+            this,SLOT(setHoldRange()));
 
 }
 
@@ -62,6 +66,12 @@ void Plot2D::logScale(bool state){
     }else{
         colorMap->setDataScaleType(QCPAxis::stLinear);
     }
-    plot->replot();
+    setHoldRange();
     return;
+}
+
+void Plot2D::setHoldRange(){
+    if(check_hold->isChecked())
+        colorMap->setDataRange(QCPRange(spinBoxMin->value(),spinBoxMax->value()));
+    plot->replot();
 }

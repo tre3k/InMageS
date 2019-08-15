@@ -14,7 +14,6 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
     this->setLayout(top_layout);
 
     plot_map = new Plot2D();
-
     plot_average = new Plot();
 
 

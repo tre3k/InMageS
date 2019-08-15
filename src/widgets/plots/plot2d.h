@@ -46,6 +46,7 @@ signals:
 
 public slots:
     void logScale(bool state);
+    void setHoldRange();
 };
 
 #endif // PLOT2D_H
