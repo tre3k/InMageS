@@ -20,13 +20,17 @@ NeutronData::~NeutronData(){
     delete data_matrix;
 }
 
-double NeutronData::get_ki(){
-    return ki;
+double NeutronData::get_ki_A(){
+    return ki*1e-10;
+}
+
+double NeutronData::get_ki_nm(){
+    return ki*1e-9;
 }
 
 void NeutronData::update_ki_Ei(){
-    ki = 2*M_PI/lambda;
-    Ei = WaveVectorToImpulse(ki)*WaveVectorToImpulse(ki)/2/cmn();
+    ki = 2.0*M_PI/lambda/1e-10;
+    Ei = WaveVectorToImpulse(ki)*WaveVectorToImpulse(ki)/2.0/cmn();
 }
 
 double NeutronData::getEi_Joul(){

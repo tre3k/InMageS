@@ -17,12 +17,17 @@ class NeutronData
 public:
     NeutronData(unsigned long x=0, unsigned long y=0);
     ~NeutronData();
-    /* if you now lamda */
+    /* if you set lamda */
     void update_ki_Ei(void);
-    /* if you now theta_max_x and Nx */
+
+    /* if you set theta_max_x and Nx */
     void update_D(void);        // calculate Distance soure to detector
 
-    double get_ki();
+    /* you need set D and L */
+    void update_max_wt();       // calculate value of maximum for wave vector and theta
+
+    double get_ki_A();                                              // [1/Angstrom]
+    double get_ki_nm();                                             // [1/nm]
 
     double getEi_Joul(void);                                        // Joul
     double getEi_meV(void);                                         // meV
@@ -33,8 +38,8 @@ public:
     static double cmn(){return 1.67492749804e-27;}                  // mass neutron     [kg]
     static double ckB(){return 1.3806504e-23;}                      // Bolzman constatn
 
-    static double WaveVectorToImpulse(double value){                // value in [1/Angstorm]
-        return cPlank()*value*1e+10;
+    static double WaveVectorToImpulse(double value){                // value in [1/m]
+        return cPlank()*value/2/M_PI;
     }
 
     unsigned long size_Nx(void);
@@ -55,7 +60,7 @@ public:
     Data2D *data_matrix;
 
 private:
-    double ki;              // incedent wave vector neutron                      [1/Angstrom]
+    double ki;              // incedent wave vector neutron                      [1/m]
     double Ei;              // incedent energy neutron                           [Joul]
 
     unsigned long Nx, Ny;

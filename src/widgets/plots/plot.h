@@ -17,7 +17,7 @@ public:
     Plot(QWidget *parent=nullptr);
     ~Plot();
 
-private:
+protected:
     bool x_log = false;
     bool y_log = false;
 

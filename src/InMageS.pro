@@ -17,6 +17,7 @@ SOURCES += \
         widgets/basewidget.cpp \
         widgets/plots/plot.cpp \
         widgets/plots/plot1d.cpp \
+        widgets/plots/plot2d.cpp \
         widgets/plots/qcustomplot.cpp \
         widgets/tabhelp.cpp \
         widgets/tabopen.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
         widgets/basewidget.h \
         widgets/plots/plot.h \
         widgets/plots/plot1d.h \
+        widgets/plots/plot2d.h \
         widgets/plots/qcustomplot.h \
         widgets/tabhelp.h \
         widgets/tabopen.h \

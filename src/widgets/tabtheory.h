@@ -9,9 +9,12 @@
 #define TABTHEORY_H
 
 #include <QGridLayout>
+#include <QSplitter>
 
 #include "basewidget.h"
 #include "plots/plot.h"
+
+#include "plots/plot2d.h"
 
 class TabTheory : public BaseWidget
 {
@@ -21,6 +24,7 @@ public:
 
 private:
     QGridLayout *top_layout;
+    Plot2D *plot_map;
     Plot *plot_average;
 
 signals:
