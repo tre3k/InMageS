@@ -47,9 +47,10 @@ Plot::Plot(QWidget *parent) : QCustomPlot(parent)
     this->yAxis2->setTickLabelFont(fontKameron);
     this->yAxis2->setSelectedTickLabelFont(fontKameron);
 
-    //this->xAxis->setLabelFont(fontKameron);
-    //this->xAxis->setSelectedLabelFont(fontKameron);
-
+    this->xAxis->setLabelFont(fontKameron);
+    this->xAxis->setSelectedLabelFont(fontKameron);
+    this->yAxis->setLabelFont(fontKameron);
+    this->yAxis->setSelectedLabelFont(fontKameron);
 
     QLocale locale("en_EN.UTF-8");
     this->setLocale(locale);

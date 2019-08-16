@@ -75,7 +75,8 @@ Plot2D::Plot2D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
     colorScale->axis()->setTickLabelFont(fontKameron);
     colorScale->axis()->setSelectedTickLabelFont(fontKameron);
 
-
+    colorScale->axis()->setLabelFont(fontKameron);
+    colorScale->axis()->setLabelFont(fontKameron);
 
 }
 
