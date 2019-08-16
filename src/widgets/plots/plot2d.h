@@ -35,6 +35,7 @@ public:
     void buildNeutronData(NeutronData *n_data);
     void buildNeutronData(void);
     void setNeutronData(NeutronData *n_data);
+    int getCurrentUnit();
 
 protected:
     Plot *plot;
@@ -47,6 +48,7 @@ protected:
     QCheckBox *check_hold;
     QCheckBox *check_log_scale;
     QComboBox *combo_select_units;
+    QPushButton *buttonRescale;
 
     QCPColorMap *colorMap;
     QCPColorScale *colorScale;
@@ -61,6 +63,8 @@ public slots:
     void hold(bool state);
     void setHoldRange();
     void setAxisUnit(int);
+    void rescaleAxis();
+    void changeDataRange(QCPRange);
 };
 
 #endif // PLOT2D_H

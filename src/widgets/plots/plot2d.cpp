@@ -17,6 +17,7 @@ Plot2D::Plot2D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
     tool_layout = new QHBoxLayout();
 
     combo_select_units = new QComboBox();
+    buttonRescale = new QPushButton("rescale");
     spinBoxMax = new QDoubleSpinBox();
     spinBoxMin = new QDoubleSpinBox();
     check_hold = new QCheckBox("hold");
@@ -41,6 +42,7 @@ Plot2D::Plot2D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
     tool_layout->setMargin(0);
     tool_layout->addWidget(new QLabel("Unit:"));
     tool_layout->addWidget(combo_select_units);
+    tool_layout->addWidget(buttonRescale);
     tool_layout->addStretch();
     tool_layout->addWidget(new QLabel("max:"));
     tool_layout->addWidget(spinBoxMax,0,Qt::AlignRight);
@@ -63,12 +65,23 @@ Plot2D::Plot2D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
     colorMap->setColorScale(colorScale);
     colorMap->setGradient(QCPColorGradient::gpJet);
 
+    QCPMarginGroup *marginGroup = new QCPMarginGroup(plot);
+    plot->axisRect()->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
+    colorScale->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
+
 
     connect(check_log_scale,SIGNAL(clicked(bool)),
             this,SLOT(logScale(bool)));
     connect(check_hold,SIGNAL(clicked(bool)),
             this,SLOT(hold(bool)));
+    connect(combo_select_units,SIGNAL(activated(int)),
+            this,SLOT(setAxisUnit(int)));
+    connect(buttonRescale,SIGNAL(clicked()),
+            this,SLOT(rescaleAxis()));
+    connect(colorScale,SIGNAL(dataRangeChanged(QCPRange)),
+            this,SLOT(changeDataRange(QCPRange)));
 
+    /* set font for right color scale */
     QFont fontKameron(
                 QFontDatabase::applicationFontFamilies(
                     QFontDatabase::addApplicationFont(":/fonts/kameron.ttf")).at(0),11);
@@ -91,6 +104,10 @@ void Plot2D::setNeutronData(NeutronData *n_data){
     neutron_data = n_data;
 }
 
+int Plot2D::getCurrentUnit(){
+    return combo_select_units->currentIndex();
+}
+
 void Plot2D::buildNeutronData(){
     if(neutron_data==nullptr) return;
     colorMap->data()->setSize(int(neutron_data->size_Nx()),int(neutron_data->size_Ny()));
@@ -100,6 +117,7 @@ void Plot2D::buildNeutronData(){
         }
     }
     setHoldRange();
+    setAxisUnit(combo_select_units->currentIndex());
     return;
 }
 
@@ -169,7 +187,19 @@ void Plot2D::setHoldRange(){
         colorMap->setDataRange(QCPRange(spinBoxMin->value(),spinBoxMax->value()));
     }else{
         colorMap->rescaleDataRange(!check_hold->isChecked());
-        plot->rescaleAxes(!check_hold->isChecked());
     }
+    plot->rescaleAxes();
     plot->replot();
+}
+
+void Plot2D::rescaleAxis(){
+    plot->rescaleAxes();
+    plot->replot();
+}
+
+void Plot2D::changeDataRange(QCPRange range){
+    if(!check_hold->isChecked()){
+        spinBoxMax->setValue(range.upper);
+        spinBoxMin->setValue(range.lower);
+    }
 }

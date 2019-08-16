@@ -35,10 +35,10 @@ public:
     /* set WaveLenght (lambda) */
     void setWaveLenght(double l);
     /* set Dlpxpy */
-    void setDlpxpy(double Dsd=1.0,              // Distance Source-Detector default 1 [m]
-                   double l=1.0,                // WaveLenght default 1 [A]
-                   double pixel_x=1.0,          // size of pixel on x default 1 [mm]
-                   double pixel_y=1.0           // size of pixel on y default 1 [mm]
+    void setDlpxpy(double DistanceSD=1.0,              // Distance Source-Detector default 1 [m]
+                   double wavelenght=1.0,                // WaveLenght default 1 [A]
+                   double pixel_x_mm=1.0,          // size of pixel on x default 1 [mm]
+                   double pixel_y_mm=1.0           // size of pixel on y default 1 [mm]
             );
 
 
@@ -69,6 +69,8 @@ public:
     static double ce(){return 1.60217662e-19;}                      // electron         [Kulon]
     static double cmn(){return 1.67492749804e-27;}                  // mass neutron     [kg]
     static double ckB(){return 1.3806504e-23;}                      // Bolzman constatn
+    static double cgf(){return 2.00231930436153;}                   // g-factor
+    static double cub(){return 927.4009682020e-26;}                 // Bor magnetron uB
 
     static double WaveVectorToImpulse(double value){                // value in [1/m]
         return cPlank()*value/2/M_PI;

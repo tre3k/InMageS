@@ -24,11 +24,11 @@ void NeutronData::setWaveLenght(double l){lambda = l;}                  // Angst
 void NeutronData::setDistanceSD(double Dsd){D = Dsd;}                   // meters
 void NeutronData::setSizePixelOfSizeX(double pixel_x){px = pixel_x;}    // in mm
 void NeutronData::setSizePixelOfSizeY(double pixel_y){py = pixel_y;}    // in mm
-void NeutronData::setDlpxpy(double Dsd, double l, double pixel_x, double pixel_y){
-    setDistanceSD(Dsd);
-    setWaveLenght(l);
-    setSizePixelOfSizeX(pixel_x);
-    setSizePixelOfSizeY(pixel_y);
+void NeutronData::setDlpxpy(double DistanceSD, double wavelenght, double pixel_x_mm, double pixel_y_mm){
+    setDistanceSD(DistanceSD);
+    setWaveLenght(wavelenght);
+    setSizePixelOfSizeX(pixel_x_mm);
+    setSizePixelOfSizeY(pixel_y_mm);
 
     update_max_wt();
 }

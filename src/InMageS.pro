@@ -13,6 +13,7 @@ SOURCES += \
         processing/data2d.cpp \
         processing/neutrondata.cpp \
         processing/swtheory.cpp \
+        processing/theory.cpp \
         threads/statusbarthread.cpp \
         widgets/basewidget.cpp \
         widgets/plots/plot.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
         processing/data2d.h \
         processing/neutrondata.h \
         processing/swtheory.h \
+        processing/theory.h \
         threads/statusbarthread.h \
         widgets/basewidget.h \
         widgets/plots/plot.h \

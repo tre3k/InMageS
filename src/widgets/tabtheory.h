@@ -15,6 +15,7 @@
 #include "plots/plot.h"
 
 #include "plots/plot2d.h"
+#include "processing/theory.h"
 
 class TabTheory : public BaseWidget
 {

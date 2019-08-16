@@ -34,9 +34,13 @@ Plot::Plot(QWidget *parent) : QCustomPlot(parent)
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),
             this,SLOT(slot_contextMenuReq(QPoint)));
 
+    /* set font for axies */
     QFont fontKameron(
                 QFontDatabase::applicationFontFamilies(
                     QFontDatabase::addApplicationFont(":/fonts/kameron.ttf")).at(0),11);
+    QFont fontCrimson(
+                QFontDatabase::applicationFontFamilies(
+                    QFontDatabase::addApplicationFont(":/fonts/crimson.ttf")).at(0),12);
 
     this->xAxis->setTickLabelFont(fontKameron);
     this->xAxis->setSelectedTickLabelFont(fontKameron);
@@ -47,10 +51,12 @@ Plot::Plot(QWidget *parent) : QCustomPlot(parent)
     this->yAxis2->setTickLabelFont(fontKameron);
     this->yAxis2->setSelectedTickLabelFont(fontKameron);
 
-    this->xAxis->setLabelFont(fontKameron);
-    this->xAxis->setSelectedLabelFont(fontKameron);
-    this->yAxis->setLabelFont(fontKameron);
-    this->yAxis->setSelectedLabelFont(fontKameron);
+    /*
+    this->xAxis->setLabelFont(fontCrimson);
+    this->xAxis->setSelectedLabelFont(fontCrimson);
+    this->yAxis->setLabelFont(fontCrimson);
+    this->yAxis->setSelectedLabelFont(fontCrimson);
+    */
 
     QLocale locale("en_EN.UTF-8");
     this->setLocale(locale);
