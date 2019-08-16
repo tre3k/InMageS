@@ -21,17 +21,49 @@ public:
     void update_ki_Ei(void);
 
     /* if you set theta_max_x and Nx */
-    void update_D(void);        // calculate Distance soure to detector
+    //void update_D(void);        // calculate Distance soure to detector
 
     /* you need set D and L */
     void update_max_wt();       // calculate value of maximum for wave vector and theta
 
+    /* set pixel resolution on x axies in [mm]*/
+    void setSizePixelOfSizeX(double pixel_x);
+    /* set pixel resolution on y axies in [mm]*/
+    void setSizePixelOfSizeY(double pixel_y);
+    /* set distance source to detector */
+    void setDistanceSD(double Dsd);
+    /* set WaveLenght (lambda) */
+    void setWaveLenght(double l);
+    /* set Dlpxpy */
+    void setDlpxpy(double Dsd=1.0,              // Distance Source-Detector default 1 [m]
+                   double l=1.0,                // WaveLenght default 1 [A]
+                   double pixel_x=1.0,          // size of pixel on x default 1 [mm]
+                   double pixel_y=1.0           // size of pixel on y default 1 [mm]
+            );
+
+
     double get_ki_A();                                              // [1/Angstrom]
     double get_ki_nm();                                             // [1/nm]
+
+    /* get maximum wavevector */
+    double get_maxQx_A();
+    double get_maxQx_nm();
+    double get_maxQy_A();
+    double get_maxQy_nm();
 
     double getEi_Joul(void);                                        // Joul
     double getEi_meV(void);                                         // meV
     double getEi_K(void);                                           // Kelvin
+
+
+    double getWaveLenght(void);
+    double getDistanceSD(void);
+
+    double getMaximumThetaX(void);                                  // in rad
+    double getMaximumThetaY(void);
+    double getMaximumThetaXmrad(void);                              // in mrad
+    double getMaximumThetaYmrad(void);
+
 
     static double cPlank(){return 6.626070040e-34;}                 // Plank constant   [Joul*s]
     static double ce(){return 1.60217662e-19;}                      // electron         [Kulon]
@@ -45,23 +77,28 @@ public:
     unsigned long int size_Nx(void);
     unsigned long int size_Ny(void);
 
-public:
-    double D;               // distance soruce to detetctor                      [m]
-    double Ly;              // size of detetcotor (size of pixel * resolution)   [m]
-    double Lx;
-    double px;              // size of pixel                                     [mm]
-    double py;
-    double theta_max_x;     // maximum theta                                     [mrad]
-    double theta_max_y;
-    double wave_vector_max_x;   // transmission maximum wavevector               [1/Angstrom]
-    double wave_vector_max_y;
-    double lambda;          // wave length of neutron                            [Angstrom 1e-10m]
 
+public:
     Data2D *data_matrix;
 
 private:
-    double ki;              // incedent wave vector neutron                      [1/m]
-    double Ei;              // incedent energy neutron                           [Joul]
+    double D;                   // distance soruce to detetctor                      [m]
+    double Ly;                  // size of detetcotor (size of pixel * resolution)   [m]
+    double Lx;
+    double px;                  // size of pixel                                     [mm]
+    double py;
+
+    double lambda;              // wave length of neutron                            [Angstrom 1e-10m]
+
+
+private:
+    double ki;                  // incedent wave vector neutron                      [1/m]
+    double Ei;                  // incedent energy neutron                           [Joul]
+
+    double theta_max_x;         // maximum theta                                     [mrad]
+    double theta_max_y;
+    double wave_vector_max_x;   // transmission maximum wavevector                   [1/m]
+    double wave_vector_max_y;
 
     unsigned long Nx, Ny;
 

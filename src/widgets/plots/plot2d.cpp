@@ -34,7 +34,7 @@ Plot2D::Plot2D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
     spinBoxMin->setMaximumWidth(80);
 
     combo_select_units->addItem("pixels");
-    combo_select_units->addItem("wave vector [1/A]");
+    combo_select_units->addItem("wave vector [1/Å]");
     combo_select_units->addItem("wave vector [1/nm]");
     combo_select_units->addItem("angle θ [mrad]");
 
@@ -69,6 +69,13 @@ Plot2D::Plot2D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
     connect(check_hold,SIGNAL(clicked(bool)),
             this,SLOT(hold(bool)));
 
+    QFont fontKameron(
+                QFontDatabase::applicationFontFamilies(
+                    QFontDatabase::addApplicationFont(":/fonts/kameron.ttf")).at(0),11);
+    colorScale->axis()->setTickLabelFont(fontKameron);
+    colorScale->axis()->setSelectedTickLabelFont(fontKameron);
+
+
 
 }
 
@@ -91,7 +98,44 @@ void Plot2D::buildNeutronData(){
             colorMap->data()->setCell(i,j,neutron_data->data_matrix->at((unsigned long int) i, (unsigned long int) j));
         }
     }
+    setHoldRange();
     return;
+}
+
+void Plot2D::setAxisUnit(int unit){
+    switch (unit){
+    /* just pixelx Nx, Ny */
+    case Units::UNIT_PIXEL:
+        colorMap->data()->setRange(QCPRange(0,neutron_data->size_Nx()),
+                                   QCPRange(0,neutron_data->size_Ny()));
+        plot->xAxis->setLabel("pixels x");
+        plot->yAxis->setLabel("pixels y");
+        break;
+
+    /* wave vector [1/A] */
+    case Units::UNIT_ANGSTROM:
+        colorMap->data()->setRange(QCPRange(-neutron_data->get_maxQx_A(),neutron_data->get_maxQx_A()),
+                                   QCPRange(-neutron_data->get_maxQy_A(),neutron_data->get_maxQy_A()));
+        plot->xAxis->setLabel("wave vector Qx, 1/Å");
+        plot->yAxis->setLabel("wave vector Qy, 1/Å");
+
+        break;
+
+    case Units::UNIT_NM:
+        colorMap->data()->setRange(QCPRange(-neutron_data->get_maxQx_nm(),neutron_data->get_maxQx_nm()),
+                                   QCPRange(-neutron_data->get_maxQy_nm(),neutron_data->get_maxQy_nm()));
+        plot->xAxis->setLabel("wave vector Qx, 1/nm");
+        plot->yAxis->setLabel("wave vector Qy, 1/nm");
+        break;
+
+    case Units::UNIT_THETA:
+        colorMap->data()->setRange(QCPRange(-neutron_data->getMaximumThetaXmrad(),neutron_data->getMaximumThetaXmrad()),
+                                   QCPRange(-neutron_data->getMaximumThetaYmrad(),neutron_data->getMaximumThetaYmrad()));
+        plot->xAxis->setLabel(QString("θx, mrad").toHtmlEscaped());
+        plot->yAxis->setLabel("θy, mrad");
+        break;
+    }
+    setHoldRange();
 }
 
 void Plot2D::logScale(bool state){
@@ -120,7 +164,11 @@ void Plot2D::hold(bool state){
 }
 
 void Plot2D::setHoldRange(){
-    if(check_hold->isChecked()) colorMap->setDataRange(QCPRange(spinBoxMin->value(),spinBoxMax->value()));
-    plot->rescaleAxes(!check_hold->isChecked());
+    if(check_hold->isChecked()){
+        colorMap->setDataRange(QCPRange(spinBoxMin->value(),spinBoxMax->value()));
+    }else{
+        colorMap->rescaleDataRange(!check_hold->isChecked());
+        plot->rescaleAxes(!check_hold->isChecked());
+    }
     plot->replot();
 }

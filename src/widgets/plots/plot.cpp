@@ -33,6 +33,26 @@ Plot::Plot(QWidget *parent) : QCustomPlot(parent)
     this->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this,SIGNAL(customContextMenuRequested(QPoint)),
             this,SLOT(slot_contextMenuReq(QPoint)));
+
+    QFont fontKameron(
+                QFontDatabase::applicationFontFamilies(
+                    QFontDatabase::addApplicationFont(":/fonts/kameron.ttf")).at(0),11);
+
+    this->xAxis->setTickLabelFont(fontKameron);
+    this->xAxis->setSelectedTickLabelFont(fontKameron);
+    this->yAxis->setTickLabelFont(fontKameron);
+    this->yAxis->setSelectedTickLabelFont(fontKameron);
+    this->xAxis2->setTickLabelFont(fontKameron);
+    this->xAxis2->setSelectedTickLabelFont(fontKameron);
+    this->yAxis2->setTickLabelFont(fontKameron);
+    this->yAxis2->setSelectedTickLabelFont(fontKameron);
+
+    //this->xAxis->setLabelFont(fontKameron);
+    //this->xAxis->setSelectedLabelFont(fontKameron);
+
+
+    QLocale locale("en_EN.UTF-8");
+    this->setLocale(locale);
 }
 
 Plot::~Plot(){

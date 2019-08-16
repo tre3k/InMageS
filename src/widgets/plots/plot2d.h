@@ -60,6 +60,7 @@ public slots:
     void logScale(bool state);
     void hold(bool state);
     void setHoldRange();
+    void setAxisUnit(int);
 };
 
 #endif // PLOT2D_H

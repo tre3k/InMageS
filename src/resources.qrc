@@ -14,5 +14,8 @@
         <file alias="exit_a.svg">icons/exit_a.svg</file>
         <file alias="exit_n.svg">icons/exit_n.svg</file>
     </qresource>
-    <qresource prefix="/"/>
+    <qresource prefix="/fonts">
+        <file alias="crimson.ttf">fonts/CrimsonText-Regular.ttf</file>
+        <file alias="kameron.ttf">fonts/Kameron-Regular.ttf</file>
+    </qresource>
 </RCC>
