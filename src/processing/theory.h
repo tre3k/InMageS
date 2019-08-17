@@ -27,7 +27,7 @@ public:
     void setAngleMagnetField(double angle=M_PI/4){phi = angle;}
 
 
-    /* Field - megnetic field [T], ks - spiral wave vector [1/A], Stiffness - spin-wave stiffness [meVA^2] */
+    /* Field - megnetic field [T], ks - spiral wave vector [1/nm], Stiffness - spin-wave stiffness [meVA^2] */
     void calculateFerromagnet(double Field=0.0,double Stiffness=100.0);
     void calculateHelimagnet(double Field=0.0,double ks=0.01,double Stiffness=100.0);
 

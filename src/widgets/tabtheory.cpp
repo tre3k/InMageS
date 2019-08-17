@@ -42,12 +42,14 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
 
     /* test plot2D and theory */
     NeutronData *nd = new NeutronData(1023,1023);
-    nd->setDlpxpy(180,5.1,8,8);
+    nd->setDlpxpy(70,5.1,8,8);
 
     Theory *ther = new Theory(nd);
-    ther->calculateFerromagnet(.1,100);
+    //ther->calculateFerromagnet(.1,100);
+    ther->calculateHelimagnet(0.1,0.2,100.0);
     qDebug() << "theta_0: " << ther->getTheta0();
     qDebug() << "theta_C2: " << sqrt(ther->getThetaC2());
+    qDebug() << "theta_B: " << ther->getThetaB();
     plot_map->buildNeutronData(nd);
 }
 
