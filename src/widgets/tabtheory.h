@@ -16,6 +16,7 @@
 
 #include "plots/plot2d.h"
 #include "processing/theory.h"
+#include "widgets/theorywidget.h"
 
 class TabTheory : public BaseWidget
 {
@@ -27,6 +28,8 @@ private:
     QGridLayout *top_layout;
     Plot2D *plot_map;
     Plot *plot_average;
+
+    TheoryWidget *tw;
 
 signals:
 

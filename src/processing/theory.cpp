@@ -5,6 +5,10 @@ Theory::Theory(NeutronData *neutron_data)
     nd = neutron_data;
 }
 
+Theory::~Theory(){
+
+}
+
 void Theory::setConstantsFerromagnet(double Field, double Stiffness){
     theta_0 = nd->getEi_meV()/
               nd->get_ki_A()/

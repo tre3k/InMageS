@@ -28,7 +28,8 @@ SOURCES += \
         widgets/statusbar.cpp \
         widgets/tabprocessing.cpp \
         widgets/tabsave.cpp \
-        widgets/tabtheory.cpp
+        widgets/tabtheory.cpp \
+        widgets/theorywidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -50,7 +51,8 @@ HEADERS += \
         widgets/statusbar.h \
         widgets/tabprocessing.h \
         widgets/tabsave.h \
-        widgets/tabtheory.h
+        widgets/tabtheory.h \
+        widgets/theorywidget.h
 
 RESOURCES += \
         resources.qrc
