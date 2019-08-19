@@ -27,6 +27,11 @@ Plot1D::Plot1D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt,parent)
     /* top level layout */
     layout->addWidget(plot);
     layout->addLayout(tool_layout);
+
+    connect(button_clean,SIGNAL(released()),
+            this,SLOT(cleanPlots()));
+    connect(button_rescale,SIGNAL(released()),
+            this,SLOT(rescaleAxis()));
 }
 
 Plot1D::~Plot1D(){

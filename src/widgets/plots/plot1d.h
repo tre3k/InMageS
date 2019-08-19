@@ -17,6 +17,7 @@
 
 class Plot1D : public BaseWidget
 {
+    Q_OBJECT
 public:
     Plot1D(StatusBarThread *sbt=nullptr, QWidget *parent = nullptr);
     ~Plot1D();
@@ -30,7 +31,7 @@ private:
     QPushButton *button_rescale;
 
 public slots:
-    void clean(){plot->clearGraphs();}
+    void cleanPlots(){plot->clearGraphs();}
     void rescaleAxis();
 
 };

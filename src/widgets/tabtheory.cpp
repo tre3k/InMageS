@@ -35,6 +35,8 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
 
     splitter_upper->addWidget(plot_map);
     splitter_upper->addWidget(plot_average);
+    splitter_upper->setSizes(QList<int>() << 20 << splitter_upper->size().width()-20 );
+
     // need relitive value
     //splitter_upper->setSizes(QList<int>() << 100 << 600);
 
@@ -45,6 +47,7 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
 
     splitter_top->addWidget(splitter_upper);
     splitter_top->addWidget(splitter_lower);
+    splitter_top->setSizes(QList<int>() << splitter_top->size().height()-20 << 20);
 
     top_layout->addWidget(splitter_top,0,0);
 
