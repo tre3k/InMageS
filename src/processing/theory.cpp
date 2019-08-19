@@ -23,15 +23,6 @@ void Theory::setConstantsFerromagnet(double Field, double Stiffness){
 }
 
 void Theory::setConstantsHelimagnet(double Field, double ks, double Stiffness){
-    /*
-    theta_0 = nd->getEi_meV()/
-              nd->get_ki_A()/
-              nd->get_ki_A()/
-              Stiffness;
-    theta_C2 = nd->getEi_meV()*nd->getEi_meV()/Stiffness/Stiffness/
-               nd->get_ki_A()/nd->get_ki_A()/nd->get_ki_A()/nd->get_ki_A() -
-               nd->cgf()*nd->cub()*Field/Stiffness/nd->get_ki_A()/nd->get_ki_A();
-               */
     setConstantsFerromagnet(Field,Stiffness);
     theta_B = ks/nd->get_ki_nm();
 }

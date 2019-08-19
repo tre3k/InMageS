@@ -45,7 +45,7 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
 
 
     /* test plot2D and theory */
-    NeutronData *nd = new NeutronData(1023,1023);
+    NeutronData *nd = new NeutronData(1024,1024);
     nd->setDlpxpy(70,5.1,8,8);
     tw->setNdPl(nd,plot_map);
 

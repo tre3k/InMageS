@@ -122,7 +122,7 @@ void Plot2D::buildNeutronData(){
 }
 
 void Plot2D::setAxisUnit(int unit){
-    if(neutron_data==nullptr) return;
+    if(neutron_data == nullptr) return;
     switch (unit){
     /* just pixelx Nx, Ny */
     case Units::UNIT_PIXEL:

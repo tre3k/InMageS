@@ -1,3 +1,6 @@
+// Thread for show message and set progress bar on statusbar
+// also signals/slot for send/recv the links for other classes
+
 #ifndef STATUSBARTHREAD_H
 #define STATUSBARTHREAD_H
 

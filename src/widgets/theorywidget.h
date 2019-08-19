@@ -7,6 +7,8 @@
 #include <QSpinBox>
 #include <QFormLayout>
 #include <QHBoxLayout>
+#include <QGroupBox>
+#include <QVBoxLayout>
 
 #include "widgets/basewidget.h"
 #include "processing/neutrondata.h"
@@ -36,11 +38,12 @@ public:
     }
 
 private:
-    Plot2D *p2d;
-    NeutronData *nd;
+    Plot2D *p2d = nullptr;
+    NeutronData *nd = nullptr;
 
     /* widgets */
-    QFormLayout *layout;
+    QHBoxLayout *layout;
+    QFormLayout *layoutForm;
     QComboBox *comboSelectType;
     QDoubleSpinBox *spinBox_stiffness;          // spin-wave stiffness
     QDoubleSpinBox *spinBox_field;              // magnet field
@@ -49,11 +52,19 @@ private:
     QDoubleSpinBox *spinBox_Dsd;                // distance source detector
     QDoubleSpinBox *spinBox_px, *spinBox_py;    // detector resolution (pixel size)
     QSpinBox *spinBox_Nx, *spinBox_Ny;          // size of detector in pixels
+
     QPushButton *button_build;
+
+    QLabel *label_theta_C;
+    QLabel *label_theta_0;
+    QLabel *label_theta_B;
+    QLabel *label_Ei_meV;
+    QLabel *label_Ei_K;
 
 public slots:
     /* calculate and build plot */
     void build(void);
+    void updateLabelEnergy(void);
 
 };
 

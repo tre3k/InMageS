@@ -53,7 +53,7 @@ protected:
     QCPColorMap *colorMap;
     QCPColorScale *colorScale;
 
-    NeutronData *neutron_data;
+    NeutronData *neutron_data = nullptr;
 
 
 signals:

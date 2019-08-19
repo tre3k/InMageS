@@ -36,7 +36,7 @@ public:
     double getThetaB(void){return theta_B;}                 // theta Bragg for Helimagnets
 
 private:
-    NeutronData *nd;                                        // neutron data
+    NeutronData *nd = nullptr;                                        // neutron data
 
     double theta_0;
     double theta_C2;                                        // theta_C^2
@@ -46,7 +46,7 @@ private:
     double phi = M_PI/4;                                    // angle of magnet field
 
 private:
-    void setConstantsFerromagnet(double Field,double Stiffness);                        // calculate theta_0,theta_C
+    void setConstantsFerromagnet(double Field,double Stiffness);                                  // calculate theta_0,theta_C
     void setConstantsHelimagnet(double Field,double ks, double Stiffness);                        // calculate theta_0,theta_C
     void zeroND();
 };

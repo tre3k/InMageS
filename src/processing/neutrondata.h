@@ -17,6 +17,10 @@ class NeutronData
 public:
     NeutronData(unsigned long x=0, unsigned long y=0);
     ~NeutronData();
+
+    /* resize Nx, Ny */
+    void resize(unsigned long int x, unsigned long y);
+
     /* if you set lamda */
     void update_ki_Ei(void);
 

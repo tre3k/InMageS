@@ -23,13 +23,12 @@ public:
     void set(unsigned long int x, unsigned long int y, double value);
     void copy(Data2D *array);
     int errno(void);
+    void del(void);
 
 private:
     unsigned long int sx;
     unsigned long int sy;
     double **data;
-
-    void del(void);
 
     int err;
 };

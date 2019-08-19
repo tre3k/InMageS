@@ -16,6 +16,12 @@ NeutronData::NeutronData(unsigned long x, unsigned long y)
     data_matrix = new Data2D(Nx,Ny);
 }
 
+void NeutronData::resize(unsigned long int x, unsigned long int y){
+    data_matrix->del();
+    Nx = x; Ny = y;
+    data_matrix->init(x,y);
+}
+
 NeutronData::~NeutronData(){
     delete data_matrix;
 }
