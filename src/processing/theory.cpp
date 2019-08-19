@@ -34,7 +34,10 @@ void Theory::calculateFerromagnet(double Field, double Stiffness){
     const double dtheta_x = 2*nd->getMaximumThetaX()/nd->size_Nx();
     const double dtheta_y = 2*nd->getMaximumThetaY()/nd->size_Ny();
 
-    const double guH = nd->cgf()*nd->cub()*Field;
+    /* megnet field energy g-factor * Bor magnetron * Field (T) */
+    const double guH = nd->cgf()*nd->cub()*Field/
+                       (Stiffness*nd->ce()*1e-20/1000)/
+                       nd->get_ki()/nd->get_ki();
 
     setConstantsFerromagnet(Field, Stiffness);
 
@@ -63,7 +66,7 @@ void Theory::calculateFerromagnet(double Field, double Stiffness){
             nd->data_matrix->set(i,j,I);
         }
     }
-
+    return;
 }
 
 void Theory::calculateHelimagnet(double Field, double ks, double Stiffness){
@@ -75,10 +78,9 @@ void Theory::calculateHelimagnet(double Field, double ks, double Stiffness){
     const double dtheta_x = 2*nd->getMaximumThetaX()/nd->size_Nx();
     const double dtheta_y = 2*nd->getMaximumThetaY()/nd->size_Ny();
 
-    const double guH = nd->cgf()*nd->cub()*Field;
+    //const double guH = nd->cgf()*nd->cub()*Field;
 
     setConstantsHelimagnet(Field, ks, Stiffness);
-
 
     theta_x = - nd->getMaximumThetaX();
     theta_y = - nd->getMaximumThetaY();
@@ -121,8 +123,8 @@ void Theory::calculateHelimagnet(double Field, double ks, double Stiffness){
             nd->data_matrix->set(i,j,I);
         }
     }
+    return;
 }
-
 
 void Theory::zeroND(){
      for(unsigned long int i=0;i<nd->size_Nx();i++){

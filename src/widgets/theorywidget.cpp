@@ -96,13 +96,13 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     //layout->addStretch(0);
     layout->addWidget(gBox);
 
-
     connect(spinBox_lambda,SIGNAL(valueChanged(double)),
             this,SLOT(updateLabelEnergy()));
 }
 
 
 void TheoryWidget::build(){
+    if(nd==nullptr) return;
     if((nd->size_Nx() != (unsigned long int)(spinBox_Nx->value())) ||
        (nd->size_Ny() != (unsigned long int)(spinBox_Ny->value()))){
             nd->resize((unsigned long int)spinBox_Nx->value(),
@@ -117,8 +117,7 @@ void TheoryWidget::build(){
 
     switch (comboSelectType->currentIndex()) {
     case TheoryType::THEORY_TYPE_FERROMAGNET:
-        //theory.calculateFerromagnet(spinBox_field->value(),spinBox_stiffness->value());
-        theory.calculateFerromagnet(0.5,100);
+        theory.calculateFerromagnet(spinBox_field->value(),spinBox_stiffness->value());
         break;
 
     case TheoryType::THEORY_TYPE_HELICOMAGNET:
@@ -133,6 +132,7 @@ void TheoryWidget::build(){
 }
 
 void TheoryWidget::updateLabelEnergy(){
+    if(nd==nullptr) return;
     nd->setWaveLenght(spinBox_lambda->value());
     label_Ei_meV->setText(QString::number(nd->getEi_meV()) + "meV");
     label_Ei_K->setText(QString::number(nd->getEi_K()) + " K");

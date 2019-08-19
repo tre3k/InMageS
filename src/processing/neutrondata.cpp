@@ -60,6 +60,7 @@ void NeutronData::update_ki_Ei(){
 
 double NeutronData::get_ki_A(){ update_ki_Ei();return ki*1e-10;}
 double NeutronData::get_ki_nm(){update_ki_Ei();return ki*1e-9;}
+double NeutronData::get_ki(){update_ki_Ei(); return ki;}
 
 double NeutronData::get_maxQx_A(){update_max_wt(); return wave_vector_max_x*1e-10;}
 double NeutronData::get_maxQy_A(){update_max_wt(); return wave_vector_max_y*1e-10;}

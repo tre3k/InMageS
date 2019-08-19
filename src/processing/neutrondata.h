@@ -48,6 +48,7 @@ public:
 
     double get_ki_A();                                              // [1/Angstrom]
     double get_ki_nm();                                             // [1/nm]
+    double get_ki();                                                // [1/m]
 
     /* get maximum wavevector */
     double get_maxQx_A();
