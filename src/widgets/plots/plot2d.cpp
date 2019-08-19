@@ -174,13 +174,14 @@ void Plot2D::hold(bool state){
                 this,SLOT(setHoldRange()));
         connect(spinBoxMin,SIGNAL(valueChanged(double)),
                 this,SLOT(setHoldRange()));
+        setHoldRange();
     }else{
         disconnect(spinBoxMax,SIGNAL(valueChanged(double)),
                 this,SLOT(setHoldRange()));
         disconnect(spinBoxMin,SIGNAL(valueChanged(double)),
                 this,SLOT(setHoldRange()));
     }
-    setHoldRange();
+
 }
 
 void Plot2D::setHoldRange(){
@@ -194,6 +195,9 @@ void Plot2D::setHoldRange(){
 }
 
 void Plot2D::rescaleAxis(){
+    if(!check_hold->isChecked()){
+        setHoldRange();
+    }
     plot->rescaleAxes();
     plot->replot();
 }

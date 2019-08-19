@@ -60,11 +60,14 @@ private:
     QLabel *label_theta_B;
     QLabel *label_Ei_meV;
     QLabel *label_Ei_K;
+    QLabel *label_HOe;                          // in Oe
+    QLabel *label_guH;                          // Magnet field energy
 
 public slots:
     /* calculate and build plot */
     void build(void);
     void updateLabelEnergy(void);
+    void updateLabelFiled(void);
 
 };
 

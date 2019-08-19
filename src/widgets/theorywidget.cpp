@@ -80,6 +80,8 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     label_theta_0 = new QLabel();
     label_theta_C = new QLabel();
     label_theta_B = new QLabel();
+    label_HOe = new QLabel();
+    label_guH = new QLabel();
 
     auto gBox = new QGroupBox("calculate values: ");
     auto layout_box = new QFormLayout();
@@ -90,6 +92,8 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     layout_box->addRow("θ<sub>B</sub>: ",label_theta_B);
     layout_box->addRow("E<sub>i</sub>: ", label_Ei_meV);
     layout_box->addRow("",label_Ei_K);
+    layout_box->addRow("H (Oe): ",label_HOe);
+    layout_box->addRow("H (meV): ",label_HOe);
 
 
     layout->addLayout(layoutForm);
@@ -118,6 +122,7 @@ void TheoryWidget::build(){
     switch (comboSelectType->currentIndex()) {
     case TheoryType::THEORY_TYPE_FERROMAGNET:
         theory.calculateFerromagnet(spinBox_field->value(),spinBox_stiffness->value());
+        label_theta_B->setText("<font color=\"gray\">There is none</font>");
         break;
 
     case TheoryType::THEORY_TYPE_HELICOMAGNET:
@@ -129,6 +134,7 @@ void TheoryWidget::build(){
 
     label_theta_0->setText(QString::number(1000*theory.getTheta0()) + " mrad");
     label_theta_C->setText(QString::number(1000*sqrt(theory.getThetaC2())) + " mrad");
+    updateLabelEnergy();
 }
 
 void TheoryWidget::updateLabelEnergy(){
@@ -136,4 +142,8 @@ void TheoryWidget::updateLabelEnergy(){
     nd->setWaveLenght(spinBox_lambda->value());
     label_Ei_meV->setText(QString::number(nd->getEi_meV()) + "meV");
     label_Ei_K->setText(QString::number(nd->getEi_K()) + " K");
+}
+
+void TheoryWidget::updateLabelFiled(){
+
 }
