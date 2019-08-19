@@ -10,6 +10,7 @@ TEMPLATE = app
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+        processing/averaging.cpp \
         processing/data2d.cpp \
         processing/neutrondata.cpp \
         processing/swtheory.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
+        processing/averaging.h \
         processing/data2d.h \
         processing/neutrondata.h \
         processing/swtheory.h \

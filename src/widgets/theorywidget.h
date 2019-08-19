@@ -67,7 +67,7 @@ public slots:
     /* calculate and build plot */
     void build(void);
     void updateLabelEnergy(void);
-    void updateLabelFiled(void);
+    void updateLabelField(void);
 
 };
 

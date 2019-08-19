@@ -34,6 +34,7 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     spinBox_ks->setRange(0,99.999);
     spinBox_ks->setDecimals(3);
     spinBox_ks->setValue(0.12);
+    spinBox_ks->setSingleStep(0.1);
     spinBox_ks->setSuffix(" nm\u207b\u00b9");
 
     spinBox_lambda = new QDoubleSpinBox(this);
@@ -93,7 +94,7 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     layout_box->addRow("E<sub>i</sub>: ", label_Ei_meV);
     layout_box->addRow("",label_Ei_K);
     layout_box->addRow("H (Oe): ",label_HOe);
-    layout_box->addRow("H (meV): ",label_HOe);
+    layout_box->addRow("H (meV): ",label_guH);
 
 
     layout->addLayout(layoutForm);
@@ -102,10 +103,13 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
 
     connect(spinBox_lambda,SIGNAL(valueChanged(double)),
             this,SLOT(updateLabelEnergy()));
+    connect(spinBox_field,SIGNAL(valueChanged(double)),
+            this,SLOT(updateLabelField()));
 }
 
 
 void TheoryWidget::build(){
+    emit setProgressBar(0);
     if(nd==nullptr) return;
     if((nd->size_Nx() != (unsigned long int)(spinBox_Nx->value())) ||
        (nd->size_Ny() != (unsigned long int)(spinBox_Ny->value()))){
@@ -135,6 +139,11 @@ void TheoryWidget::build(){
     label_theta_0->setText(QString::number(1000*theory.getTheta0()) + " mrad");
     label_theta_C->setText(QString::number(1000*sqrt(theory.getThetaC2())) + " mrad");
     updateLabelEnergy();
+    updateLabelField();
+
+    emit showMessage("Built with magnetic filed: "+QString::number(10000*spinBox_field->value())+" Oe"
+                     ", spin-wave stiffness: "+QString::number(spinBox_stiffness->value())+" meVÅ\u00b2");
+    emit setProgressBar(100);
 }
 
 void TheoryWidget::updateLabelEnergy(){
@@ -144,6 +153,9 @@ void TheoryWidget::updateLabelEnergy(){
     label_Ei_K->setText(QString::number(nd->getEi_K()) + " K");
 }
 
-void TheoryWidget::updateLabelFiled(){
-
+void TheoryWidget::updateLabelField(){
+    label_HOe->setText(QString::number(spinBox_field->value()*10000) + " Oe");
+    label_guH->setText(QString::number(
+                           1000*spinBox_field->value()*NeutronData::cgf()*NeutronData::cub()/NeutronData::ce()
+                           ) + " meV");
 }
