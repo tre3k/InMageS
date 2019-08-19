@@ -14,9 +14,11 @@
 #include "basewidget.h"
 #include "plots/plot.h"
 
+#include "plots/plot1d.h"
 #include "plots/plot2d.h"
 #include "processing/theory.h"
 #include "widgets/theorywidget.h"
+#include "widgets/averagewidget.h"
 
 class TabTheory : public BaseWidget
 {
@@ -26,10 +28,12 @@ public:
 
 private:
     QGridLayout *top_layout;
+
     Plot2D *plot_map;
-    Plot *plot_average;
+    Plot1D *plot_average;
 
     TheoryWidget *tw;
+    AverageWidget *aw;
 
 signals:
 

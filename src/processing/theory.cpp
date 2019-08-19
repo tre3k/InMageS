@@ -1,3 +1,14 @@
+/* mainwindow.h
+ * Copyright 2019 14 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analitical data and processing experemental data
+ * К. А. Пшеничный, Е. В. Алтынбаев, С. В. Григорьев
+ * Расчет сечения рассеяния нейтронов на спиновых волнах в геликомагнетиках
+ * ПОВЕРХНОСТЬ. РЕНТГЕНОВСКИЕ, СИНХРОТРОННЫЕ И НЕЙТРОННЫЕ ИССЛЕДОВАНИЯ N. 5 pp. 18–28 (Май 2018)
+*/
+
+
 #include "theory.h"
 
 Theory::Theory(NeutronData *neutron_data)

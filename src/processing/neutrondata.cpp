@@ -42,7 +42,7 @@ void NeutronData::setDlpxpy(double DistanceSD, double wavelenght, double pixel_x
 /* caclculate wave vector and theta from Nx(count pixels),Ny,px(size of pixel),py and Distance */
 void NeutronData::update_max_wt(){
     Lx = Nx*px/1000;         // size of detector [m]
-    Ly = Ny*px/1000;
+    Ly = Ny*py/1000;
 
     theta_max_x = atan(Lx/2/D);
     theta_max_y = atan(Ly/2/D);

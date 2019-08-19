@@ -13,9 +13,9 @@ SOURCES += \
         processing/averaging.cpp \
         processing/data2d.cpp \
         processing/neutrondata.cpp \
-        processing/swtheory.cpp \
         processing/theory.cpp \
         threads/statusbarthread.cpp \
+        widgets/averagewidget.cpp \
         widgets/basewidget.cpp \
         widgets/plots/plot.cpp \
         widgets/plots/plot1d.cpp \
@@ -37,9 +37,9 @@ HEADERS += \
         processing/averaging.h \
         processing/data2d.h \
         processing/neutrondata.h \
-        processing/swtheory.h \
         processing/theory.h \
         threads/statusbarthread.h \
+        widgets/averagewidget.h \
         widgets/basewidget.h \
         widgets/plots/plot.h \
         widgets/plots/plot1d.h \
