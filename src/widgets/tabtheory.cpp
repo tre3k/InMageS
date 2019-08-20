@@ -37,11 +37,8 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
     splitter_upper->addWidget(plot_average);
     splitter_upper->setSizes(QList<int>() << 20 << splitter_upper->size().width()-20 );
 
-    // need relitive value
-    //splitter_upper->setSizes(QList<int>() << 100 << 600);
-
+    /* add bottom widgets to splitter */
     splitter_lower->addWidget(tw);
-    //splitter_lower->setSizes(QList<int>() << 100 << 900);
     splitter_lower->addWidget(aw);
 
 
@@ -51,10 +48,14 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
 
     top_layout->addWidget(splitter_top,0,0);
 
-
     /* test plot2D and theory */
     NeutronData *nd = new NeutronData(1023,1023);
-    nd->setDlpxpy(70,5.1,8,8);
     tw->setNdPl(nd,plot_map);
+
+    /* test average widget */
+    AverageThread *awth = new AverageThread;
+    awth->setName("Left");
+    awth->setNutronData(nd);
+    aw->addAverageThread(awth);
 }
 

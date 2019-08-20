@@ -44,7 +44,7 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
 
     spinBox_Dsd = new QDoubleSpinBox(this);
     spinBox_Dsd->setRange(0,9999.999);
-    spinBox_Dsd->setValue(20.0);
+    spinBox_Dsd->setValue(15.0);
     spinBox_Dsd->setDecimals(3);
     spinBox_Dsd->setSuffix(" m");
 
@@ -61,8 +61,8 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     auto *layout_pxpy = new QHBoxLayout();
     layout_pxpy->addWidget(spinBox_px);
     layout_pxpy->addWidget(spinBox_py);
-    spinBox_px->setRange(0,99.99); spinBox_px->setValue(2.0); spinBox_px->setSuffix(" mm");
-    spinBox_py->setRange(0,99.99); spinBox_py->setValue(2.0); spinBox_py->setSuffix(" mm");
+    spinBox_px->setRange(0,99.99); spinBox_px->setValue(1.0); spinBox_px->setSuffix(" mm");
+    spinBox_py->setRange(0,99.99); spinBox_py->setValue(1.0); spinBox_py->setSuffix(" mm");
 
     layoutForm->addRow("Type:",comboSelectType);
     layoutForm->addRow("Stiffness: ",spinBox_stiffness);

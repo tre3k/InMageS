@@ -38,6 +38,7 @@ Plot2D::Plot2D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
     combo_select_units->addItem("wave vector [1/Å]");
     combo_select_units->addItem("wave vector [1/nm]");
     combo_select_units->addItem("angle θ [mrad]");
+    combo_select_units->addItem("reletiv [-1;1]");
 
     tool_layout->setMargin(0);
     tool_layout->addWidget(new QLabel("Unit:"));
@@ -153,6 +154,13 @@ void Plot2D::setAxisUnit(int unit){
                                    QCPRange(-neutron_data->getMaximumThetaYmrad(),neutron_data->getMaximumThetaYmrad()));
         plot->xAxis->setLabel(QString("θx, mrad").toHtmlEscaped());
         plot->yAxis->setLabel("θy, mrad");
+        break;
+
+    case Units::UNIT_REL:
+        colorMap->data()->setRange(QCPRange(-1.0,1.0),
+                                   QCPRange(-1.0,1.0));
+        plot->xAxis->setLabel("x, arb. units");
+        plot->yAxis->setLabel("y, arb. units");
         break;
     }
     setHoldRange();

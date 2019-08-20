@@ -14,6 +14,7 @@ SOURCES += \
         processing/data2d.cpp \
         processing/neutrondata.cpp \
         processing/theory.cpp \
+        threads/averagethread.cpp \
         threads/statusbarthread.cpp \
         widgets/averagewidget.cpp \
         widgets/basewidget.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
         processing/data2d.h \
         processing/neutrondata.h \
         processing/theory.h \
+        threads/averagethread.h \
         threads/statusbarthread.h \
         widgets/averagewidget.h \
         widgets/basewidget.h \

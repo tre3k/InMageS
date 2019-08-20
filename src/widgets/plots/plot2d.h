@@ -23,7 +23,8 @@ enum Units{
     UNIT_PIXEL,
     UNIT_ANGSTROM,
     UNIT_NM,
-    UNIT_THETA
+    UNIT_THETA,
+    UNIT_REL
 };
 
 class Plot2D : public BaseWidget

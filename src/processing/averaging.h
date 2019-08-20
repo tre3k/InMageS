@@ -32,13 +32,12 @@ public:
 private:
     NeutronData *nd = nullptr;
 
-    double oa;          // open angle
-    double a;           // angle
-    double x0;          // x0
-    double y0;          // y0
-    double ofs;         // offsetb
-    double len;         // lenght
-
+    double oa = 120;             // open angle
+    double a = 0;                // angle
+    double x0 = 0.5;             // x0
+    double y0 = 0.5;             // y0
+    double ofs = 0;              // offsetb
+    double len = 0.5;            // lenght
 
 
 private:
