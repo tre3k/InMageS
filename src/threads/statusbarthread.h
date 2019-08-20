@@ -6,6 +6,7 @@
 
 #include <QThread>
 #include <QDebug>
+#include <QMutex>
 
 #include "widgets/statusbar.h"
 
@@ -18,6 +19,9 @@ public:
 private:
     void run() override;
     StatusBar *link_to_statusbar;
+
+protected:
+    QMutex *mutex;
 
 signals:
 

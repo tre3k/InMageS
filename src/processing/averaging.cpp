@@ -10,6 +10,7 @@
 Averaging::Averaging(NeutronData *neutron_data)
 {
     setNeutronData(neutron_data);
+
 }
 
 Averaging::~Averaging(){

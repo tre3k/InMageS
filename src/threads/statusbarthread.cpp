@@ -9,7 +9,7 @@
 
 StatusBarThread::StatusBarThread(QObject *parent) : QThread(parent)
 {
-
+    mutex = new QMutex();
 }
 
 void StatusBarThread::run(){
@@ -17,9 +17,10 @@ void StatusBarThread::run(){
     while(1){
         QThread::msleep(8000);
         if(link_to_statusbar==NULL) continue;
+        mutex->lock();
         if((link_to_statusbar->getProgressBar()==0) ||
            (link_to_statusbar->getProgressBar()==100)) link_to_statusbar->hideProgressBar();
-
+        mutex->unlock();
     }
 }
 
@@ -28,10 +29,14 @@ void StatusBarThread::recvLinkToStatusBar(StatusBar *lnk){
 }
 
 void StatusBarThread::setProgressBar(int value){
+    mutex->lock();
     link_to_statusbar->showProgressBar();
     link_to_statusbar->setProgressBar(value);
+    mutex->unlock();
 }
 
 void StatusBarThread::showMessage(QString message){
+    mutex->lock();
     link_to_statusbar->showMessage(message);
+    mutex->unlock();
 }
