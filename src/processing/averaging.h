@@ -27,6 +27,13 @@ public:
     void setOffset(double offset){ofs = offset;}
     void setLenght(double lenght){len = lenght;}
 
+    double getAngle(void){return a;}
+    double getOpenAngle(void){return oa;}
+    double getX0(void){return x0;}
+    double getY0(void){return y0;}
+    double getLength(void){return len;}
+    double getOffset(void){return ofs;}
+
     void azimuthally();
 
 private:

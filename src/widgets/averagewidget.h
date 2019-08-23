@@ -31,6 +31,13 @@ private:
     QPushButton *button_rm;
     QComboBox *combo_select;
 
+    QDoubleSpinBox *spinBox_angle;
+    QDoubleSpinBox *spinBox_open_angle;
+    QDoubleSpinBox *spinBox_pos_x;
+    QDoubleSpinBox *spinBox_pos_y;
+    QDoubleSpinBox *spinBox_lenght;
+    QDoubleSpinBox *spinBox_offset;
+
     QVBoxLayout *layout_top;
     QHBoxLayout *layout_combo;
 
