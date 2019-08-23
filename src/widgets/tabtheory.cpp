@@ -53,10 +53,14 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
     tw->setNdPl(nd,plot_map);
 
     /* test average widget */
-    AverageThread *awth = new AverageThread();
-    awth->setName("Left");
-    awth->setNutronData(nd);
+    auto *awth_left = new AverageThread();
+    awth_left->setName("Left");
+    awth_left->setNutronData(nd);
+    auto *awth_right = new AverageThread();
+    awth_right->setName("Right");
+    awth_right->setNutronData(nd);
     // Add item
-    aw->addAverageThread(awth);
+    aw->addAverageThread(awth_left);
+    aw->addAverageThread(awth_right);
 }
 

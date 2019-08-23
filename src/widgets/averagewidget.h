@@ -1,3 +1,10 @@
+/* mainwindow.h
+ * Copyright 2019 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analitical data and processing experemental data
+ */
+
 #ifndef AVERAGEWIDGET_H
 #define AVERAGEWIDGET_H
 
@@ -27,6 +34,7 @@ private:
 
     /* Widgets */
     QPushButton *button_average;
+    QPushButton *button_set;
     QPushButton *button_add;
     QPushButton *button_rm;
     QComboBox *combo_select;
@@ -43,7 +51,11 @@ private:
 
 public slots:
     void addAverageThread(AverageThread *average_thread);
+    void setUIFromAveraging(int index);
+    void setAveragingFromUI();
 
+    void pressButtonSet(){setAveragingFromUI();}
+    void pressButtonAverage();
 
 };
 

@@ -1,3 +1,10 @@
+/* mainwindow.h
+ * Copyright 2019 Aug
+ * Kirill Pshenichnyi
+ * This part of InMageS (Inelastic Magnet Scattering)
+ * Software for Build analitical data and processing experemental data
+ */
+
 // Thread for show message and set progress bar on statusbar
 // also signals/slot for send/recv the links for other classes
 
