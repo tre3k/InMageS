@@ -59,10 +59,11 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     a_threads.clear();
 
 
-    connect(combo_select,SIGNAL(activated(int)),
-            this,SLOT(setUIFromAveraging(int)));
-    connect(button_set,SIGNAL(clicked()),
-            this,SLOT(pressButtonSet()));
+    connect(combo_select,SIGNAL(activated(int)),this,SLOT(setUIFromAveraging(int)));
+    connect(button_set,SIGNAL(clicked()),this,SLOT(pressButtonSet()));
+    connect(button_rm,SIGNAL(clicked()),this,SLOT(pressButtonRm()));
+    connect(button_add,SIGNAL(clicked()),this,SLOT(pressButtonAdd()));
+    connect(button_average,SIGNAL(clicked()),this,SLOT(pressButtonAverage()));
 
 }
 
@@ -72,9 +73,9 @@ AverageWidget::~AverageWidget(){
 
 
 void AverageWidget::addAverageThread(AverageThread *average_thread){
+    if(nd!=nullptr) average_thread->setNutronData(nd);
     combo_select->addItem(average_thread->getName());
     a_threads.append(average_thread);
-
     setUIFromAveraging(a_threads.size()-1);
 
     return;
@@ -100,5 +101,27 @@ void AverageWidget::setAveragingFromUI(){
 }
 
 void AverageWidget::pressButtonAverage(){
+    for(int i=0;i<a_threads.size();i++){
+        a_threads.at(i)->start();
+    }
     return;
+}
+
+void AverageWidget::pressButtonAdd(){
+    bool ok;
+    QString default_name = "average"+QString::number(a_threads.size()+1);
+    QString name = QInputDialog::getText(this, "set name: ",
+                                         "Name: ", QLineEdit::Normal,
+                                         default_name, &ok);
+    if(ok && !name.isEmpty()){
+        auto *average_thread = new AverageThread();
+        average_thread->setName(name);
+        this->addAverageThread(average_thread);
+    }
+}
+
+
+void AverageWidget::pressButtonRm(){
+    a_threads.removeAt(combo_select->currentIndex());
+    combo_select->removeItem(combo_select->currentIndex());
 }

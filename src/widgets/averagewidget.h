@@ -16,6 +16,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QFormLayout>
+#include <QInputDialog>
 
 #include "widgets/basewidget.h"
 #include "processing/averaging.h"
@@ -31,6 +32,7 @@ public:
 
 private:
     QVector<AverageThread *> a_threads;
+    NeutronData *nd = nullptr;
 
     /* Widgets */
     QPushButton *button_average;
@@ -52,10 +54,14 @@ private:
 public slots:
     void addAverageThread(AverageThread *average_thread);
     void setUIFromAveraging(int index);
-    void setAveragingFromUI();
+    void setAveragingFromUI(void);
+    void setNeutronData(NeutronData *neutron_data){nd = neutron_data;}
 
-    void pressButtonSet(){setAveragingFromUI();}
-    void pressButtonAverage();
+    void pressButtonSet(void){setAveragingFromUI();}
+    void pressButtonAverage(void);
+
+    void pressButtonAdd(void);
+    void pressButtonRm(void);
 
 };
 

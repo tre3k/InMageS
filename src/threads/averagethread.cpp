@@ -18,6 +18,9 @@ AverageThread::~AverageThread(){
 }
 
 void AverageThread::run(){
+    mux->lock();
+    qDebug() << "name: " << getName();
+    mux->unlock();
 
 }
 

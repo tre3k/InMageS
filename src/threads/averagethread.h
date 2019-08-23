@@ -10,6 +10,7 @@
 
 #include <QThread>
 #include <QMutex>
+#include <QDebug>
 
 #include "processing/averaging.h"
 #include "processing/neutrondata.h"
