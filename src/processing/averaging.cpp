@@ -21,13 +21,9 @@ void Averaging::azimuthally(){
     if(result!=nullptr) delete result;
     if(nd==nullptr) return;
 
-    /* test */
-    result_size = nd->size_Nx();
-    result = new double [result_size];
+    double dphi,dr;                             //small values for incriminate
 
-    for(int i=0;i<result_size;i++){
-        result[i]=i*i*a;
-    }
+
 
     progress(100);
 }

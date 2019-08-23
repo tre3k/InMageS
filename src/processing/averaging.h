@@ -58,7 +58,14 @@ private:
     void (*progress)(int) = nullptr;
 
 private:
-
+    /* convert from circle to decart space */
+    // r, phi - input value
+    // x, y - output value (not array)
+    static void toDecart(double r,double phi,double *x,double *y){
+        phi = 2*M_PI*phi/360;
+        *x = r*cos(phi);
+        *y = r*sin(phi);
+    }
 
 };
 
