@@ -43,3 +43,4 @@ void StatusBar::hideProgressBar(){
 void StatusBar::setProgressBar(int value){
     progressBar->setValue(value);
 }
+

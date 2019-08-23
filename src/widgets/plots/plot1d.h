@@ -11,6 +11,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QVector>
 
 #include "widgets/basewidget.h"
 #include "widgets/plots/plot.h"
@@ -22,6 +23,8 @@ public:
     Plot1D(StatusBarThread *sbt=nullptr, QWidget *parent = nullptr);
     ~Plot1D();
 
+    Plot *getPlot(){return plot;}
+
 private:
     QVBoxLayout *layout;
     QHBoxLayout *tool_layout;
@@ -32,6 +35,7 @@ private:
 
 public slots:
     void cleanPlots(){plot->clearGraphs();}
+    void addPlot(QVector<double> abscissa,QVector<double> ordinate,QString name= "", QString color="rand");
     void rescaleAxis();
 
 };

@@ -41,5 +41,26 @@ Plot1D::~Plot1D(){
 }
 
 void Plot1D::rescaleAxis(){
+    plot->rescaleAxes(true);
+}
 
+void Plot1D::addPlot(QVector<double> abscissa, QVector<double> ordinate, QString name, QString color){
+    QColor col;
+    if(color=="rand"){
+        col = QColor(rand()%245+10, rand()%245+10, rand()%245+10);
+    }else{
+        col = QColor(color);
+    }
+    QPen pen;
+    pen.setColor(col);
+
+    plot->addGraph();
+    plot->graph()->setName(name);
+    plot->graph()->setData(abscissa,ordinate);
+    plot->graph()->setPen(pen);
+
+    /* need modificate */
+    plot->graph()->setLineStyle((QCPGraph::LineStyle)1);
+    plot->graph()->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
+    plot->replot();
 }

@@ -9,6 +9,8 @@
 
 AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, parent)
 {
+    status_bar_thread = sbt;
+
     button_add = new QPushButton("+");
     button_rm = new QPushButton("-");
     button_average = new QPushButton("average");
@@ -76,7 +78,10 @@ void AverageWidget::addAverageThread(AverageThread *average_thread){
     if(nd!=nullptr) average_thread->setNutronData(nd);
     combo_select->addItem(average_thread->getName());
     a_threads.append(average_thread);
+    average_thread->setNumber(a_threads.size()-1);
     setUIFromAveraging(a_threads.size()-1);
+
+    connect(average_thread,SIGNAL(endProcessing(int)),this,SLOT(plotData(int)));
 
     return;
 }
@@ -101,6 +106,7 @@ void AverageWidget::setAveragingFromUI(){
 }
 
 void AverageWidget::pressButtonAverage(){
+    p1d->getPlot()->clearGraphs();
     for(int i=0;i<a_threads.size();i++){
         a_threads.at(i)->start();
     }
@@ -122,6 +128,20 @@ void AverageWidget::pressButtonAdd(){
 
 
 void AverageWidget::pressButtonRm(){
+    disconnect(a_threads.at(combo_select->currentIndex()),SIGNAL(endProcessing(int)),this,SLOT(plotData(int)));
     a_threads.removeAt(combo_select->currentIndex());
+
     combo_select->removeItem(combo_select->currentIndex());
+}
+
+void AverageWidget::plotData(int num){
+    QVector<double> x,y;
+    for(int i=0;i<10;i++){
+        x.append(i*2);
+        y.append(rand()%100);
+    }
+    p1d->addPlot(x,y);
+    p1d->rescaleAxis();
+    qDebug() <<"num of thread: " << num;
+
 }

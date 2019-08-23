@@ -21,6 +21,8 @@
 #include "widgets/basewidget.h"
 #include "processing/averaging.h"
 #include "threads/averagethread.h"
+#include "plots/plot2d.h"
+#include "plots/plot1d.h"
 
 
 class AverageWidget : public BaseWidget
@@ -33,6 +35,11 @@ public:
 private:
     QVector<AverageThread *> a_threads;
     NeutronData *nd = nullptr;
+
+    Plot2D *p2d = nullptr;  // for paint lines
+    Plot1D *p1d = nullptr;  // for plot results
+
+    StatusBarThread *status_bar_thread;
 
     /* Widgets */
     QPushButton *button_average;
@@ -55,13 +62,24 @@ public slots:
     void addAverageThread(AverageThread *average_thread);
     void setUIFromAveraging(int index);
     void setAveragingFromUI(void);
-    void setNeutronData(NeutronData *neutron_data){nd = neutron_data;}
+
+    void setNeutronData(NeutronData *neutron_data){
+        nd = neutron_data;
+        for(int i=0;i<a_threads.size();i++){
+            a_threads.at(i)->av->setNeutronData(nd);
+        }
+    }
+    void setPlot1D(Plot1D *plot1d){p1d = plot1d;}
+    void setPlot2D(Plot2D *plot2d){p2d = plot2d;}
+
 
     void pressButtonSet(void){setAveragingFromUI();}
     void pressButtonAverage(void);
 
     void pressButtonAdd(void);
     void pressButtonRm(void);
+
+    void plotData(int num);
 
 };
 

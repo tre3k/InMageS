@@ -14,6 +14,7 @@
 
 #include "processing/averaging.h"
 #include "processing/neutrondata.h"
+#include "widgets/statusbar.h"
 
 class AverageThread : public QThread
 {
@@ -26,18 +27,32 @@ public:
     void setName(QString name){Name = name;}
     QString getName(){return Name;}
 
+
+    int getNumber(void){return n;}
+    void setNumber(int number){n = number;}
+
 public:
     /* public averaging, this set angles,coord,etc */
     Averaging *av;
 
 protected:
     QMutex *mux;
+    /* number of thread */
+    int n = 0;
 
 private:
     QString Name = "azimutal";
+    static void progressFunction(int value);
+
+
+signals:
+    void progressChanged(int);
+    /* send id number of thread */
+    void endProcessing(int);
 
 public slots:
     void setNutronData(NeutronData *neutron_data);
+
 
 };
 

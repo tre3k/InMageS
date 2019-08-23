@@ -34,6 +34,10 @@ public:
     double getLength(void){return len;}
     double getOffset(void){return ofs;}
 
+    int getResultSize(void){return result_size;}
+    double *getResult(void){return result;}
+    NeutronData *getNeutronData(void){return nd;}
+
     void azimuthally();
 
 private:
@@ -46,6 +50,9 @@ private:
     double ofs = 0;              // offsetb
     double len = 0.5;            // lenght
 
+
+    int result_size = 0;
+    double *result = nullptr;
 
 private:
     /* progress function */

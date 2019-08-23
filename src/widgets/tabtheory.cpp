@@ -18,6 +18,8 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
 
     tw = new TheoryWidget(sbt);
     aw = new AverageWidget(sbt);
+    aw->setPlot1D(plot_average);
+    aw->setPlot2D(plot_map);
 
 
     QSplitter *splitter_top = new QSplitter();
@@ -55,7 +57,9 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
     /* test average widget */
     auto *awth_left = new AverageThread();
     awth_left->setName("Left");
+    awth_left->av->setAngle(180);
     auto *awth_right = new AverageThread();
+    awth_right->av->setAngle(0);
     awth_right->setName("Right");
     // Add item
     aw->setNeutronData(nd);
