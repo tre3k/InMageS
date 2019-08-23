@@ -58,6 +58,8 @@ private:
     QVBoxLayout *layout_top;
     QHBoxLayout *layout_combo;
 
+    void renumbersThreads();
+
 public slots:
     void addAverageThread(AverageThread *average_thread);
     void setUIFromAveraging(int index);

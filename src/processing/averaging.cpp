@@ -19,13 +19,14 @@ Averaging::~Averaging(){
 
 void Averaging::azimuthally(){
     if(result!=nullptr) delete result;
+    if(nd==nullptr) return;
 
     /* test */
-    result_size = 1024;
+    result_size = nd->size_Nx();
     result = new double [result_size];
 
-    for(int i=0;i<1024;i++){
-        result[i]=i*i;
+    for(int i=0;i<result_size;i++){
+        result[i]=i*i*a;
     }
 
     progress(100);

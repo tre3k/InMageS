@@ -50,13 +50,15 @@ private:
     double ofs = 0;              // offsetb
     double len = 0.5;            // lenght
 
-
     int result_size = 0;
     double *result = nullptr;
 
 private:
     /* progress function */
     void (*progress)(int) = nullptr;
+
+private:
+
 
 };
 

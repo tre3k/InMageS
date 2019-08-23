@@ -34,7 +34,7 @@ private:
     QPushButton *button_rescale;
 
 public slots:
-    void cleanPlots(){plot->clearGraphs();}
+    void cleanPlots(){plot->clearGraphs();plot->replot();}
     void addPlot(QVector<double> abscissa,QVector<double> ordinate,QString name= "", QString color="rand");
     void rescaleAxis();
 

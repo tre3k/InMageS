@@ -28,9 +28,9 @@ Plot1D::Plot1D(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt,parent)
     layout->addWidget(plot);
     layout->addLayout(tool_layout);
 
-    connect(button_clean,SIGNAL(released()),
+    connect(button_clean,SIGNAL(clicked()),
             this,SLOT(cleanPlots()));
-    connect(button_rescale,SIGNAL(released()),
+    connect(button_rescale,SIGNAL(clicked()),
             this,SLOT(rescaleAxis()));
 }
 
@@ -42,6 +42,7 @@ Plot1D::~Plot1D(){
 
 void Plot1D::rescaleAxis(){
     plot->rescaleAxes(true);
+    plot->replot();
 }
 
 void Plot1D::addPlot(QVector<double> abscissa, QVector<double> ordinate, QString name, QString color){

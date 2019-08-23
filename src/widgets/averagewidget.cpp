@@ -79,10 +79,12 @@ void AverageWidget::addAverageThread(AverageThread *average_thread){
     combo_select->addItem(average_thread->getName());
     a_threads.append(average_thread);
     average_thread->setNumber(a_threads.size()-1);
-    setUIFromAveraging(a_threads.size()-1);
+    //setUIFromAveraging(a_threads.size()-1);
 
     connect(average_thread,SIGNAL(endProcessing(int)),this,SLOT(plotData(int)));
 
+    combo_select->activated(a_threads.size()-1);
+    combo_select->setCurrentIndex(a_threads.size()-1);
     return;
 }
 
@@ -106,9 +108,11 @@ void AverageWidget::setAveragingFromUI(){
 }
 
 void AverageWidget::pressButtonAverage(){
+    setAveragingFromUI();
     p1d->getPlot()->clearGraphs();
     for(int i=0;i<a_threads.size();i++){
-        a_threads.at(i)->start();
+        qDebug() << "start " << i << " therad";
+        if(a_threads.at(i)!=nullptr) a_threads.at(i)->start();
     }
     return;
 }
@@ -123,25 +127,37 @@ void AverageWidget::pressButtonAdd(){
         auto *average_thread = new AverageThread();
         average_thread->setName(name);
         this->addAverageThread(average_thread);
+        renumbersThreads();
     }
+
 }
 
 
 void AverageWidget::pressButtonRm(){
     disconnect(a_threads.at(combo_select->currentIndex()),SIGNAL(endProcessing(int)),this,SLOT(plotData(int)));
+
+    delete a_threads.at(combo_select->currentIndex());
     a_threads.removeAt(combo_select->currentIndex());
+    renumbersThreads();
 
     combo_select->removeItem(combo_select->currentIndex());
 }
 
 void AverageWidget::plotData(int num){
     QVector<double> x,y;
-    for(int i=0;i<10;i++){
-        x.append(i*2);
-        y.append(rand()%100);
+    double *data = a_threads.at(num)->av->getResult();
+    if(data==nullptr) return;
+    for(int i=0;i<a_threads.at(num)->av->getResultSize();i++){
+        x.append(i);
+        y.append(data[i]);
     }
     p1d->addPlot(x,y);
     p1d->rescaleAxis();
-    qDebug() <<"num of thread: " << num;
+}
 
+/* for remove and add new average item */
+void AverageWidget::renumbersThreads(){
+    for(int i=0;i<a_threads.size();i++){
+        a_threads.at(i)->setNumber(i);
+    }
 }
