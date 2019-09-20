@@ -37,7 +37,11 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     spinBox_offset = new QDoubleSpinBox();
 
     spinBox_pos_x = new QDoubleSpinBox();
+    spinBox_pos_x->setRange(-1,1);
+    spinBox_pos_x->setSingleStep(0.1);
     spinBox_pos_y = new QDoubleSpinBox();
+    spinBox_pos_y->setRange(-1,1);
+    spinBox_pos_y->setSingleStep(0.1);
 
     auto *layout_elements = new QFormLayout();
     layout_elements->addRow("Angle: ",spinBox_angle);

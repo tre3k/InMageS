@@ -8,6 +8,7 @@
 #ifndef AVERAGING_H
 #define AVERAGING_H
 
+#include <QDebug>
 #include <math.h>
 #include "neutrondata.h"
 
@@ -45,10 +46,10 @@ private:
 
     double oa = 120;             // open angle
     double a = 0;                // angle
-    double x0 = 0.5;             // x0
-    double y0 = 0.5;             // y0
+    double x0 = 0.0;             // x0
+    double y0 = 0.0;             // y0
     double ofs = 0;              // offsetb
-    double len = 0.5;            // lenght
+    double len = 1.0;            // lenght
 
     int result_size = 0;
     double *result = nullptr;
@@ -66,6 +67,8 @@ private:
         *x = r*cos(phi);
         *y = r*sin(phi);
     }
+
+    static int DoubleToInt(double value){return int(value+0.5);}
 
 };
 
