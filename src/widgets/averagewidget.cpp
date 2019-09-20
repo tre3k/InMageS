@@ -157,17 +157,34 @@ void AverageWidget::pressButtonRm(){
 }
 
 void AverageWidget::plotData(int num){
-    QVector<double> x,y;
+    QVector<double> xTheta,xAngstorm,xNanoMeters,xrel,y;
     double rel;
     double *data = a_threads.at(num)->av->getResult();
     double dc = (a_threads.at(num)->av->getLength()-a_threads.at(num)->av->getOffset())/a_threads.at(num)->av->getResultSize();
     if(data==nullptr) return;
     for(int i=0;i<a_threads.at(num)->av->getResultSize();i++){
         rel = a_threads.at(num)->av->getOffset()+dc*i;
-        x.append(rel*nd->getMaximumThetaXmrad());
+        xrel.append(rel);
+        xTheta.append(rel*nd->getMaximumThetaXmrad());
+        xAngstorm.append(rel*nd->get_maxQx_A());
+        xNanoMeters.append(rel*nd->get_maxQx_nm());
         y.append(data[i]);
     }
-    p1d->addPlot(x,y);
+
+    QString color;
+    switch(num){
+    case 0:
+        color = "#1212f5";          // blue
+        break;
+    case 1:
+        color = "#f51212";          // red
+        break;
+    default:
+        color = "rand";
+        break;
+    }
+    p1d->addPlot(xNanoMeters,y,a_threads.at(num)->getName(),color);
+    p1d->getPlot()->legend->setVisible(true);
     p1d->rescaleAxis();
 }
 
