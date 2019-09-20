@@ -44,9 +44,9 @@ unsigned long int Data2D::size_y(){
 }
 
 double Data2D::at(unsigned long x, unsigned long y){
-    if((x<sx)||(y<sy)) return data[x][y];
+    if(!(x>=sx || y>=sy || x<0 || y<0)) return data[x][y];
     err = -1;
-    return 0;
+    return 0.0;
 }
 
 void Data2D::set(unsigned long x, unsigned long y, double value){

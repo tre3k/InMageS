@@ -31,17 +31,23 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     spinBox_angle->setSuffix(" degree");
     spinBox_angle->setRange(-360.0, 360.0);
     spinBox_lenght = new QDoubleSpinBox();
+    spinBox_lenght->setRange(0,1);
+    spinBox_lenght->setSingleStep(0.01);
     spinBox_open_angle = new QDoubleSpinBox();
     spinBox_open_angle->setSuffix(" degree");
     spinBox_open_angle->setRange(-360.0, 360.0);
     spinBox_offset = new QDoubleSpinBox();
+    spinBox_offset->setRange(0,1);
+    spinBox_offset->setSingleStep(0.01);
 
     spinBox_pos_x = new QDoubleSpinBox();
     spinBox_pos_x->setRange(-1,1);
-    spinBox_pos_x->setSingleStep(0.1);
+    spinBox_pos_x->setDecimals(3);
+    spinBox_pos_x->setSingleStep(0.01);
     spinBox_pos_y = new QDoubleSpinBox();
     spinBox_pos_y->setRange(-1,1);
-    spinBox_pos_y->setSingleStep(0.1);
+    spinBox_pos_y->setDecimals(3);
+    spinBox_pos_y->setSingleStep(0.01);
 
     auto *layout_elements = new QFormLayout();
     layout_elements->addRow("Angle: ",spinBox_angle);
@@ -109,6 +115,9 @@ void AverageWidget::setAveragingFromUI(){
     a_threads.at(combo_select->currentIndex())->av->setOffset(spinBox_offset->value());
     a_threads.at(combo_select->currentIndex())->av->setX0(spinBox_pos_x->value());
     a_threads.at(combo_select->currentIndex())->av->setY0(spinBox_pos_y->value());
+
+    /* paint symbols on 2dplot, here for test*/
+
 }
 
 void AverageWidget::pressButtonAverage(){
@@ -149,10 +158,13 @@ void AverageWidget::pressButtonRm(){
 
 void AverageWidget::plotData(int num){
     QVector<double> x,y;
+    double rel;
     double *data = a_threads.at(num)->av->getResult();
+    double dc = (a_threads.at(num)->av->getLength()-a_threads.at(num)->av->getOffset())/a_threads.at(num)->av->getResultSize();
     if(data==nullptr) return;
     for(int i=0;i<a_threads.at(num)->av->getResultSize();i++){
-        x.append(i);
+        rel = a_threads.at(num)->av->getOffset()+dc*i;
+        x.append(rel*nd->getMaximumThetaXmrad());
         y.append(data[i]);
     }
     p1d->addPlot(x,y);

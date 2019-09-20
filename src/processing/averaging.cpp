@@ -45,9 +45,7 @@ void Averaging::azimuthally(){
         n = 0;
         S=0;
         for(phi=a-oa/2; phi<a+oa/2; phi+=dphi){
-            //qDebug() << "r: " << r << " phi: " << phi;
             toDecart(r,phi,&x,&y);
-            //qDebug() << "x: " << DoubleToInt(x+px0) << "y: " << DoubleToInt(y+py0);
             S += nd->data_matrix->at(DoubleToInt(x+px0),DoubleToInt(y+py0));
             n++;
         }
