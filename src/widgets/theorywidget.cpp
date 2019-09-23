@@ -84,7 +84,7 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     label_HOe = new QLabel();
     label_guH = new QLabel();
 
-    auto gBox = new QGroupBox("calculate values: ");
+    auto gBox = new QGroupBox("Calculate values: ");
     auto layout_box = new QFormLayout();
 
     gBox->setLayout(layout_box);

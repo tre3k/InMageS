@@ -284,5 +284,5 @@ void AverageWidget::paintSector(double x0, double y0, double angle, double open_
     Averaging::toDecart(length,angle-open_angle/2,&x,&y);
     line2->end->setCoords(x+x0,y+y0);
 
-    auto ellipse = new QCPItemEllipse(p2d->getPlot());
+    //auto ellipse = new QCPItemEllipse(p2d->getPlot());
 }
