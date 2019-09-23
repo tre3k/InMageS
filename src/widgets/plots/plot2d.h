@@ -36,7 +36,11 @@ public:
     void buildNeutronData(NeutronData *n_data);
     void buildNeutronData(void);
     void setNeutronData(NeutronData *n_data);
-    int getCurrentUnit();
+    int getCurrentUnit(void);
+    auto getPlot(void){return plot;}
+
+    double getRecoordX(double rel_x);
+    double getRecoordY(double rel_y);
 
 protected:
     Plot *plot;

@@ -76,6 +76,7 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     connect(button_rm,SIGNAL(clicked()),this,SLOT(pressButtonRm()));
     connect(button_add,SIGNAL(clicked()),this,SLOT(pressButtonAdd()));
     connect(button_average,SIGNAL(clicked()),this,SLOT(pressButtonAverage()));
+    //connect(combo_select,SIGNAL())
 
 }
 
@@ -193,4 +194,19 @@ void AverageWidget::renumbersThreads(){
     for(int i=0;i<a_threads.size();i++){
         a_threads.at(i)->setNumber(i);
     }
+}
+
+void AverageWidget::pressButtonSet(){
+    setAveragingFromUI();
+    /*
+    auto line1 = new QCPItemLine(p2d->getPlot());
+    line1->setPen(QPen(QColor("black"),1,Qt::DashLine,Qt::SquareCap,Qt::BevelJoin));
+    line1->start->setCoords(-0.5,0.5);
+    line1->end->setCoords(0.5,-0.6);
+    p2d->getPlot()->replot();
+    */
+
+    qDebug() << p2d->getRecoordX(spinBox_pos_x->value()) << p2d->getRecoordY(spinBox_pos_y->value());
+
+
 }

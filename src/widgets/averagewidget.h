@@ -75,7 +75,7 @@ public slots:
     void setPlot2D(Plot2D *plot2d){p2d = plot2d;}
 
 
-    void pressButtonSet(void){setAveragingFromUI();}
+    void pressButtonSet(void);
     void pressButtonAverage(void);
 
     void pressButtonAdd(void);
