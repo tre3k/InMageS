@@ -25,6 +25,12 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     button_rm->setMaximumWidth(30);
     button_add->setMaximumWidth(30);
 
+    combo_untis = new QComboBox(this);
+    combo_untis->addItem("pixels");
+    combo_untis->addItem("wave vector [1/Å]");
+    combo_untis->addItem("wave vector [1/nm]");
+    combo_untis->addItem("angle θ [mrad]");
+    combo_untis->addItem("reletiv [-1;1]");
 
     /*spinBoxs*/
     spinBox_angle = new QDoubleSpinBox();
@@ -62,11 +68,17 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     layout_buttons->addWidget(button_set);
     layout_buttons->addWidget(button_average);
     layout_elements->addRow("",layout_buttons);
+    layout_elements->addRow("Units on 'x' axie: ",combo_untis);
 
     layout_top = new QVBoxLayout();
-    this->setLayout(layout_top);
     layout_top->addLayout(layout_combo);
     layout_top->addLayout(layout_elements);
+
+    auto g_box = new QGroupBox("Average: ");
+    auto layout = new QVBoxLayout();
+    this->setLayout(layout);
+    layout->addWidget(g_box);
+    g_box->setLayout(layout_top);
 
     a_threads.clear();
 
@@ -122,7 +134,8 @@ void AverageWidget::setAveragingFromUI(){
 }
 
 void AverageWidget::pressButtonAverage(){
-    setAveragingFromUI();
+    //setAveragingFromUI();    // or...?
+    pressButtonSet();
     p1d->getPlot()->clearGraphs();
     for(int i=0;i<a_threads.size();i++){
         qDebug() << "start " << i << " therad";
@@ -180,11 +193,31 @@ void AverageWidget::plotData(int num){
     case 1:
         color = "#f51212";          // red
         break;
+    case 2:
+        color = "#12f512";          // green
+        break;
+    case 3:
+        color = "#edf512";          // yellow
+        break;
     default:
         color = "rand";
         break;
     }
-    p1d->addPlot(xNanoMeters,y,a_threads.at(num)->getName(),color);
+    switch (combo_untis->currentIndex()) {
+    case UNIT_NM:
+        p1d->addPlot(xNanoMeters,y,a_threads.at(num)->getName(),color);
+        break;
+    case UNIT_ANGSTROM:
+        p1d->addPlot(xAngstorm,y,a_threads.at(num)->getName(),color);
+        break;
+    case UNIT_THETA:
+        p1d->addPlot(xTheta,y,a_threads.at(num)->getName(),color);
+        break;
+    default:
+        p1d->addPlot(xrel,y,a_threads.at(num)->getName(),color);
+        break;
+    }
+
     p1d->getPlot()->legend->setVisible(true);
     p1d->rescaleAxis();
 }
@@ -199,10 +232,17 @@ void AverageWidget::renumbersThreads(){
 void AverageWidget::pressButtonSet(){
     setAveragingFromUI();
 
+    p2d->rescaleAxis();
     p2d->getPlot()->clearItems();
     for(int i=0;i<a_threads.size();i++){
         paintCross(p2d->getRecoordX(a_threads.at(i)->av->getX0()),
                    p2d->getRecoordY(a_threads.at(i)->av->getY0()));
+        paintSector(p2d->getRecoordX(a_threads.at(i)->av->getX0()),
+                    p2d->getRecoordY(a_threads.at(i)->av->getY0()),
+                    a_threads.at(i)->av->getAngle(),
+                    a_threads.at(i)->av->getOpenAngle(),
+                    p2d->getRecoordX(a_threads.at(i)->av->getOffset()),
+                    p2d->getRecoordX(a_threads.at(i)->av->getLength()));
 
     }
 
@@ -225,5 +265,24 @@ void AverageWidget::paintCross(double x,double y,double scale){
     line2->setPen(QPen(QColor("black"),1,Qt::SolidLine,Qt::SquareCap,Qt::BevelJoin));
     line2->start->setCoords(x+scale_x,y);
     line2->end->setCoords(x-scale_x,y);
+}
 
+void AverageWidget::paintSector(double x0, double y0, double angle, double open_angle, double offset, double length){
+    double x,y;
+
+    auto line1 = new QCPItemLine(p2d->getPlot());
+    line1->setPen(QPen(QColor("white"),1,Qt::SolidLine,Qt::SquareCap,Qt::BevelJoin));
+    Averaging::toDecart(offset,angle+open_angle/2,&x,&y);
+    line1->start->setCoords(x+x0,y+y0);
+    Averaging::toDecart(length,angle+open_angle/2,&x,&y);
+    line1->end->setCoords(x+x0,y+y0);
+
+    auto line2 = new QCPItemLine(p2d->getPlot());
+    line2->setPen(QPen(QColor("white"),1,Qt::SolidLine,Qt::SquareCap,Qt::BevelJoin));
+    Averaging::toDecart(offset,angle-open_angle/2,&x,&y);
+    line2->start->setCoords(x+x0,y+y0);
+    Averaging::toDecart(length,angle-open_angle/2,&x,&y);
+    line2->end->setCoords(x+x0,y+y0);
+
+    auto ellipse = new QCPItemEllipse(p2d->getPlot());
 }

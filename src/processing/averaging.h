@@ -58,7 +58,7 @@ private:
     /* progress function */
     void (*progress)(int) = nullptr;
 
-private:
+public:
     /* convert from circle to decart space */
     // r, phi - input value
     // x, y - output value (not array)

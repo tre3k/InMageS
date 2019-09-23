@@ -18,9 +18,9 @@
 #include <QMouseEvent>
 #include <QPropertyAnimation>
 
-#define BACKGROUND_COLOR "#434343"
+#define BACKGROUND_COLOR "#0b262c"
 #define HIGHLIGHTED_COLOR "#575757"   // RESERVATION
-#define BACKLIGHT_COLOR "#232323"
+#define BACKLIGHT_COLOR "#091d22"
 
 #define DURATION_ANIMATION 300          // in ms
 

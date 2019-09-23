@@ -55,11 +55,14 @@ private:
     QDoubleSpinBox *spinBox_lenght;
     QDoubleSpinBox *spinBox_offset;
 
+    QComboBox *combo_untis;
+
     QVBoxLayout *layout_top;
     QHBoxLayout *layout_combo;
 
     void renumbersThreads();
     void paintCross(double x,double y,double scale = 0.01);
+    void paintSector(double x0,double y0,double angle,double open_angle,double offset,double length);
 
 public slots:
     void addAverageThread(AverageThread *average_thread);
