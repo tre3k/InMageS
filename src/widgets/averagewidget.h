@@ -59,6 +59,7 @@ private:
     QHBoxLayout *layout_combo;
 
     void renumbersThreads();
+    void paintCross(double x,double y,double scale = 0.01);
 
 public slots:
     void addAverageThread(AverageThread *average_thread);

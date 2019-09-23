@@ -222,9 +222,8 @@ double Plot2D::getRecoordX(double rel_x){
     QCPRange range = plot->xAxis->range();
     switch(combo_select_units->currentIndex()){
     case UNIT_PIXEL:
-
+        return rel_x*(range.upper-range.lower)/2.0+(range.upper-range.lower)/2.0;
         break;
-
     default:
         return rel_x*(range.upper-range.lower)/2.0;
         break;
@@ -235,7 +234,7 @@ double Plot2D::getRecoordY(double rel_y){
     QCPRange range = plot->yAxis->range();
     switch(combo_select_units->currentIndex()){
     case UNIT_PIXEL:
-
+        return rel_y*(range.upper-range.lower)/2.0+(range.upper-range.lower)/2.0;
         break;
     default:
         return rel_y*(range.upper-range.lower)/2.0;

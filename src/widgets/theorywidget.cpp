@@ -134,6 +134,7 @@ void TheoryWidget::build(){
         label_theta_B->setText(QString::number(1000*theory.getThetaB())+ " mrad");
         break;
     }
+    p2d->getPlot()->clearItems();
     p2d->buildNeutronData(nd);
 
     label_theta_0->setText(QString::number(1000*theory.getTheta0()) + " mrad");

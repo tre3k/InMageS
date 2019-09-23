@@ -60,6 +60,10 @@ void Plot1D::addPlot(QVector<double> abscissa, QVector<double> ordinate, QString
     plot->graph()->setData(abscissa,ordinate);
     plot->graph()->setPen(pen);
 
+    auto *decorator = new QCPSelectionDecorator();
+    decorator->setPen(QPen(QColor(color),2));
+    plot->graph()->setSelectionDecorator(decorator);
+
     /* need modificate */
     plot->graph()->setLineStyle((QCPGraph::LineStyle)1);
     plot->graph()->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));

@@ -198,15 +198,32 @@ void AverageWidget::renumbersThreads(){
 
 void AverageWidget::pressButtonSet(){
     setAveragingFromUI();
-    /*
-    auto line1 = new QCPItemLine(p2d->getPlot());
-    line1->setPen(QPen(QColor("black"),1,Qt::DashLine,Qt::SquareCap,Qt::BevelJoin));
-    line1->start->setCoords(-0.5,0.5);
-    line1->end->setCoords(0.5,-0.6);
+
+    p2d->getPlot()->clearItems();
+    for(int i=0;i<a_threads.size();i++){
+        paintCross(p2d->getRecoordX(a_threads.at(i)->av->getX0()),
+                   p2d->getRecoordY(a_threads.at(i)->av->getY0()));
+
+    }
+
     p2d->getPlot()->replot();
-    */
+}
 
-    qDebug() << p2d->getRecoordX(spinBox_pos_x->value()) << p2d->getRecoordY(spinBox_pos_y->value());
+void AverageWidget::paintCross(double x,double y,double scale){
+    double scale_x = scale;
+    double scale_y = scale;
 
+    scale_x *= (p2d->getPlot()->xAxis->range().upper - p2d->getPlot()->xAxis->range().lower);
+    scale_y *= (p2d->getPlot()->yAxis->range().upper - p2d->getPlot()->yAxis->range().lower);
+
+    auto line1 = new QCPItemLine(p2d->getPlot());
+    line1->setPen(QPen(QColor("black"),1,Qt::SolidLine,Qt::SquareCap,Qt::BevelJoin));
+    line1->start->setCoords(x,y+scale_y);
+    line1->end->setCoords(x,y-scale_y);
+
+    auto line2 = new QCPItemLine(p2d->getPlot());
+    line2->setPen(QPen(QColor("black"),1,Qt::SolidLine,Qt::SquareCap,Qt::BevelJoin));
+    line2->start->setCoords(x+scale_x,y);
+    line2->end->setCoords(x-scale_x,y);
 
 }
