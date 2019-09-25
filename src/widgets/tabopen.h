@@ -8,7 +8,12 @@
 #ifndef TABOPEN_H
 #define TABOPEN_H
 
+#include <QTabWidget>
+#include <QVBoxLayout>
+
 #include "basewidget.h"
+#include "openrawfilewidget.h"
+#include "opendbwidget.h"
 
 class TabOpen : public BaseWidget
 {

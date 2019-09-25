@@ -18,6 +18,8 @@ SOURCES += \
         threads/statusbarthread.cpp \
         widgets/averagewidget.cpp \
         widgets/basewidget.cpp \
+        widgets/opendbwidget.cpp \
+        widgets/openrawfilewidget.cpp \
         widgets/plots/plot.cpp \
         widgets/plots/plot1d.cpp \
         widgets/plots/plot2d.cpp \
@@ -43,6 +45,8 @@ HEADERS += \
         threads/statusbarthread.h \
         widgets/averagewidget.h \
         widgets/basewidget.h \
+        widgets/opendbwidget.h \
+        widgets/openrawfilewidget.h \
         widgets/plots/plot.h \
         widgets/plots/plot1d.h \
         widgets/plots/plot2d.h \

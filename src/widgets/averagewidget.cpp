@@ -284,5 +284,14 @@ void AverageWidget::paintSector(double x0, double y0, double angle, double open_
     Averaging::toDecart(length,angle-open_angle/2,&x,&y);
     line2->end->setCoords(x+x0,y+y0);
 
-    //auto ellipse = new QCPItemEllipse(p2d->getPlot());
+    auto line3 = new QCPItemCurve(p2d->getPlot());
+    line3->setPen(QPen(QColor("white"),1,Qt::SolidLine,Qt::SquareCap,Qt::BevelJoin));
+    Averaging::toDecart(length,angle+open_angle/2,&x,&y);
+    line3->start->setCoords(x+x0,y+y0);
+    Averaging::toDecart(length,angle+20,&x,&y);
+    line3->startDir->setCoords(x+x0,y+y0);
+    Averaging::toDecart(length,angle-open_angle/2,&x,&y);
+    line3->end->setCoords(x+x0,y+y0);
+    Averaging::toDecart(length,angle-20,&x,&y);
+    line3->endDir->setCoords(x+x0,y+y0);
 }
