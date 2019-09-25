@@ -21,6 +21,8 @@ TabTheory::TabTheory(StatusBarThread *sbt, QWidget *parent) : BaseWidget(sbt, pa
     aw->setPlot1D(plot_average);
     aw->setPlot2D(plot_map);
 
+    /* set default unit on plot2d */
+    plot_map->setCurrentUnitIndex(UNIT_THETA);
 
     QSplitter *splitter_top = new QSplitter();
     splitter_top->setAttribute(Qt::WA_DeleteOnClose);

@@ -31,6 +31,10 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     combo_untis->addItem("wave vector [1/nm]");
     combo_untis->addItem("angle θ [mrad]");
     combo_untis->addItem("reletiv [-1;1]");
+    /* default units */
+    combo_untis->setCurrentIndex(UNIT_THETA);
+
+    check_box_fix_plots = new QCheckBox("not clean graphs");
 
     /*spinBoxs*/
     spinBox_angle = new QDoubleSpinBox();
@@ -69,6 +73,7 @@ AverageWidget::AverageWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget
     layout_buttons->addWidget(button_average);
     layout_elements->addRow("",layout_buttons);
     layout_elements->addRow("Units on 'x' axie: ",combo_untis);
+    layout_elements->addRow("",check_box_fix_plots);
 
     layout_top = new QVBoxLayout();
     layout_top->addLayout(layout_combo);
@@ -136,7 +141,7 @@ void AverageWidget::setAveragingFromUI(){
 void AverageWidget::pressButtonAverage(){
     //setAveragingFromUI();    // or...?
     pressButtonSet();
-    p1d->getPlot()->clearGraphs();
+    if(!check_box_fix_plots->isChecked()) p1d->getPlot()->clearGraphs();
     for(int i=0;i<a_threads.size();i++){
         qDebug() << "start " << i << " therad";
         if(a_threads.at(i)!=nullptr) a_threads.at(i)->start();
@@ -186,6 +191,7 @@ void AverageWidget::plotData(int num){
     }
 
     QString color;
+    QString name_postfix="";
     switch(num){
     case 0:
         color = "#1212f5";          // blue
@@ -203,18 +209,23 @@ void AverageWidget::plotData(int num){
         color = "rand";
         break;
     }
+    if(check_box_fix_plots->isChecked()){
+        color = "rand";
+        name_postfix = " H = "+QString::number(a_threads.at(num)->av->getNeutronData()->getMagnetFieldT())+ " T";
+        name_postfix += " λ = "+QString::number(a_threads.at(num)->av->getNeutronData()->getWaveLenght())+ " Å";
+    }
     switch (combo_untis->currentIndex()) {
     case UNIT_NM:
-        p1d->addPlot(xNanoMeters,y,a_threads.at(num)->getName(),color);
+        p1d->addPlot(xNanoMeters,y,a_threads.at(num)->getName()+name_postfix,color);
         break;
     case UNIT_ANGSTROM:
-        p1d->addPlot(xAngstorm,y,a_threads.at(num)->getName(),color);
+        p1d->addPlot(xAngstorm,y,a_threads.at(num)->getName()+name_postfix,color);
         break;
     case UNIT_THETA:
-        p1d->addPlot(xTheta,y,a_threads.at(num)->getName(),color);
+        p1d->addPlot(xTheta,y,a_threads.at(num)->getName()+name_postfix,color);
         break;
     default:
-        p1d->addPlot(xrel,y,a_threads.at(num)->getName(),color);
+        p1d->addPlot(xrel,y,a_threads.at(num)->getName()+name_postfix,color);
         break;
     }
 
@@ -284,6 +295,7 @@ void AverageWidget::paintSector(double x0, double y0, double angle, double open_
     Averaging::toDecart(length,angle-open_angle/2,&x,&y);
     line2->end->setCoords(x+x0,y+y0);
 
+    /*
     auto line3 = new QCPItemCurve(p2d->getPlot());
     line3->setPen(QPen(QColor("white"),1,Qt::SolidLine,Qt::SquareCap,Qt::BevelJoin));
     Averaging::toDecart(length,angle+open_angle/2,&x,&y);
@@ -294,4 +306,5 @@ void AverageWidget::paintSector(double x0, double y0, double angle, double open_
     line3->end->setCoords(x+x0,y+y0);
     Averaging::toDecart(length,angle-20,&x,&y);
     line3->endDir->setCoords(x+x0,y+y0);
+    */
 }

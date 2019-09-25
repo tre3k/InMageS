@@ -70,6 +70,7 @@ public slots:
     void setAxisUnit(int);
     void rescaleAxis();
     void changeDataRange(QCPRange);
+    void setCurrentUnitIndex(int index);
 };
 
 #endif // PLOT2D_H

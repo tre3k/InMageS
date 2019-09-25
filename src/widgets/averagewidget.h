@@ -60,6 +60,8 @@ private:
     QVBoxLayout *layout_top;
     QHBoxLayout *layout_combo;
 
+    QCheckBox *check_box_fix_plots;
+
     void renumbersThreads();
     void paintCross(double x,double y,double scale = 0.01);
     void paintSector(double x0,double y0,double angle,double open_angle,double offset,double length);

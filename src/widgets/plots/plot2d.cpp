@@ -240,5 +240,10 @@ double Plot2D::getRecoordY(double rel_y){
         return rel_y*(range.upper-range.lower)/2.0;
         break;
     }
+}
 
+void Plot2D::setCurrentUnitIndex(int index){
+    combo_select_units->setCurrentIndex(index);
+    setAxisUnit(index);
+    return;
 }

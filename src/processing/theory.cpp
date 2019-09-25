@@ -31,6 +31,7 @@ void Theory::setConstantsFerromagnet(double Field, double Stiffness){
     }else{
         theta_C = 0.0;
     }
+    nd->setMagnetField(Field);
 }
 
 void Theory::setConstantsHelimagnet(double Field, double ks, double Stiffness){

@@ -38,6 +38,8 @@ public:
     void setDistanceSD(double Dsd);
     /* set WaveLenght (lambda) */
     void setWaveLenght(double l);
+    /* set Magnet Field (Tesla) */
+    void setMagnetField(double magnet_field){H=magnet_field;}
     /* set Dlpxpy */
     void setDlpxpy(double DistanceSD=1.0,              // Distance Source-Detector default 1 [m]
                    double wavelenght=1.0,                // WaveLenght default 1 [A]
@@ -61,13 +63,15 @@ public:
     double getEi_K(void);                                           // Kelvin
 
 
-    double getWaveLenght(void);
+    double getWaveLenght(void){return lambda;}
     double getDistanceSD(void);
 
     double getMaximumThetaX(void);                                  // in rad
     double getMaximumThetaY(void);
     double getMaximumThetaXmrad(void);                              // in mrad
     double getMaximumThetaYmrad(void);
+
+    double getMagnetFieldT(void){return H;}                         // in Tesla
 
 
     static double cPlank(){return 6.626070040e-34;}                 // Plank constant   [Joul*s]
@@ -96,6 +100,8 @@ private:
     double py;
 
     double lambda;              // wave length of neutron                            [Angstrom 1e-10m]
+
+    double H;                   // magnetField
 
 
 private:
