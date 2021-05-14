@@ -58,6 +58,53 @@ void NeutronData::update_ki_Ei(){
     Ei = WaveVectorToImpulse(ki)*WaveVectorToImpulse(ki)/2.0/cmn();
 }
 
+void NeutronData::exportData(QString filename, int unit){
+        double from_x,dx;
+        double from_y,dy;
+        double unit_x, unit_y;
+
+        /*
+         *    UNIT_PIXEL,
+         *    UNIT_ANGSTROM,
+         *    UNIT_NM,
+         *    UNIT_THETA,
+         *    UNIT_REL
+         */
+
+        switch(unit){
+        case 0:
+                from_x = 0;
+                from_y = 0;
+                dx = 1;
+                dy = 1;
+                break;
+        case 3: // mrad
+                from_x = -getMaximumThetaX();
+                from_y = -getMaximumThetaY();
+                dx = 2*getMaximumThetaX()/Nx;
+                dy = 2*getMaximumThetaY()/Ny;
+                break;
+        }
+
+        QFile fd(filename);
+        QTextStream text_stream(&fd);
+        fd.open(QFileDevice::WriteOnly);
+
+        unit_x = from_x;
+        unit_y = from_y;
+
+        for(unsigned long i=0;i<Nx;i++){
+                for(unsigned long j=0;j<Ny;j++){
+                        text_stream << QString::number(unit_x) << " " << QString::number(unit_y) << " " << data_matrix->at(i,j) << "\n";
+                        unit_x += dx;
+                        unit_y += dy;
+                }
+        }
+
+
+        fd.close();
+}
+
 double NeutronData::get_ki_A(){ update_ki_Ei();return ki*1e-10;}
 double NeutronData::get_ki_nm(){update_ki_Ei();return ki*1e-9;}
 double NeutronData::get_ki(){update_ki_Ei(); return ki;}

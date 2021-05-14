@@ -17,7 +17,8 @@
 
 enum TheoryType{
     THEORY_TYPE_FERROMAGNET,
-    THEORY_TYPE_HELICOMAGNET
+    THEORY_TYPE_HELICOMAGNET,
+    THEORY_TYPE_LUBA_TEST
 };
 
 class TheoryWidget : public BaseWidget
@@ -54,6 +55,7 @@ private:
     QSpinBox *spinBox_Nx, *spinBox_Ny;          // size of detector in pixels
 
     QPushButton *button_build;
+    QPushButton *button_export;
 
     QLabel *label_theta_C;
     QLabel *label_theta_0;
@@ -66,6 +68,7 @@ private:
 public slots:
     /* calculate and build plot */
     void build(void);
+    void export_nd(void);
     void updateLabelEnergy(void);
     void updateLabelField(void);
 

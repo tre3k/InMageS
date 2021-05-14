@@ -30,6 +30,7 @@ public:
     /* Field - megnetic field [T], ks - spiral wave vector [1/nm], Stiffness - spin-wave stiffness [meVA^2] */
     void calculateFerromagnet(double Field=0.0,double Stiffness=100.0);
     void calculateHelimagnet(double Field=0.0,double ks=0.01,double Stiffness=100.0);
+    void calculateLubaTest(double Field=0.0,double ks=0.01,double Stiffness=100.0);
 
     double getTheta0(void){return theta_0;}                 // theta_0
     double getThetaC2(void){return theta_C2;}               // theta_C^2

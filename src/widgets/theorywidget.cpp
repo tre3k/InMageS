@@ -12,10 +12,13 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     comboSelectType = new QComboBox();
     comboSelectType->addItem("Ferromagnet");
     comboSelectType->addItem("Helimagnet");
+    comboSelectType->addItem("Luba");
 
     button_build = new QPushButton("build");
+    button_export = new QPushButton("export");
     connect(button_build,SIGNAL(clicked()),
             this,SLOT(build()));
+    connect(button_export,SIGNAL(clicked()),this,SLOT(export_nd()));
 
     spinBox_stiffness = new QDoubleSpinBox(this);
     spinBox_stiffness->setRange(0.0, 99999.999);
@@ -25,14 +28,14 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
 
     spinBox_field = new QDoubleSpinBox(this);
     spinBox_field->setRange(0,99.999);
-    spinBox_field->setDecimals(3);
+    spinBox_field->setDecimals(5);
     spinBox_field->setSingleStep(0.1);
     spinBox_field->setValue(0.03);
     spinBox_field->setSuffix(" T");
 
     spinBox_ks = new QDoubleSpinBox(this);
     spinBox_ks->setRange(0,99.999);
-    spinBox_ks->setDecimals(3);
+    spinBox_ks->setDecimals(5);
     spinBox_ks->setValue(0.12);
     spinBox_ks->setSingleStep(0.1);
     spinBox_ks->setSuffix(" nm\u207b\u00b9");
@@ -73,6 +76,8 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
     layoutForm->addRow("detector of resolution: ",layout_NxNy);
     layoutForm->addRow("Pixel of size: ",layout_pxpy);
     layoutForm->addRow("",button_build);
+    layoutForm->addRow("",button_export);
+
 
 
     /* output calculate value */
@@ -107,6 +112,11 @@ TheoryWidget::TheoryWidget(StatusBarThread *sbt, QWidget *parent) : BaseWidget(s
             this,SLOT(updateLabelField()));
 }
 
+void TheoryWidget::export_nd(){
+        QString filename = QFileDialog::getSaveFileName(nullptr,"","","*.dat");
+        if(filename=="") return;
+        nd->exportData(filename,p2d->getCurrentUnit());
+}
 
 void TheoryWidget::build(){
     emit setProgressBar(0);
@@ -133,12 +143,16 @@ void TheoryWidget::build(){
         theory.calculateHelimagnet(spinBox_field->value(),spinBox_ks->value(),spinBox_stiffness->value());
         label_theta_B->setText(QString::number(1000*theory.getThetaB())+ " mrad");
         break;
+    case TheoryType::THEORY_TYPE_LUBA_TEST:
+        theory.calculateLubaTest(spinBox_field->value(),spinBox_ks->value(),spinBox_stiffness->value());
+        label_theta_B->setText(QString::number(1000*theory.getThetaB())+ " mrad");
+        break;
     }
     p2d->getPlot()->clearItems();
     p2d->buildNeutronData(nd);
 
-    label_theta_0->setText(QString::number(1000*theory.getTheta0()) + " mrad");
-    label_theta_C->setText(QString::number(1000*sqrt(theory.getThetaC2())) + " mrad");
+    label_theta_0->setText(QString::number(1000*theory.getTheta0()) + " mrad ("+QString::number(1000*theory.getTheta0()*1000*theory.getTheta0())+ " mrad<sup>2</sup>)");
+    label_theta_C->setText(QString::number(1000*sqrt(theory.getThetaC2())) + " mrad (" + QString::number(1000000*theory.getThetaC2()) + " mrad<sup>2</sup>)");
     updateLabelEnergy();
     updateLabelField();
 

@@ -138,6 +138,52 @@ void Theory::calculateHelimagnet(double Field, double ks, double Stiffness){
     return;
 }
 
+void Theory::calculateLubaTest(double Field, double ks, double Stiffness){
+    double I;
+    double theta_x, theta_y, theta, theta2;
+
+    const double dtheta_x = 2*nd->getMaximumThetaX()/nd->size_Nx();
+    const double dtheta_y = 2*nd->getMaximumThetaY()/nd->size_Ny();
+
+    /* megnet field energy g-factor * Bor magnetron * Field (T) */
+    const double guH = nd->cgf()*nd->cub()*Field/
+                       (Stiffness*nd->ce()*1e-20/1000)/
+                       nd->get_ki()/nd->get_ki();
+
+    setConstantsFerromagnet(Field, Stiffness);
+
+    theta_x = - nd->getMaximumThetaX();
+    theta_y = - nd->getMaximumThetaY();
+
+    zeroND();
+    setAngleMagnetField(M_PI/4);
+
+    for(unsigned long int i=0;i<nd->size_Nx();i++){
+        theta_x += dtheta_x;
+        theta_y = - nd->getMaximumThetaY();
+        for(unsigned long int j=0;j<nd->size_Ny();j++){
+            theta_y += dtheta_y;
+
+            theta = theta_x + theta_y;
+            theta2 = theta_x*theta_x + theta_y*theta_y;
+
+            /*
+            I = (T/nd->getEi_K())*sin(2*phi)*(
+                        (theta_0*theta_0-guH)*theta_x*theta_0/
+                        sqrt(theta_0*theta_0 - theta2 - guH)/
+                        (theta2*theta_0*theta_0 + guH*guH)
+                  );
+                  */
+
+            I=4*theta_0/sqrt(theta_0*theta_0-theta2-guH)*2*(theta_0*theta_0-guH)/(4*theta_0*theta_0*theta2+guH*guH);
+            if((theta_0*theta_0-theta2-guH) <=0 ) I=0.0;
+
+            nd->data_matrix->set(i,j,I);
+        }
+    }
+    return;
+}
+
 void Theory::zeroND(){
      for(unsigned long int i=0;i<nd->size_Nx();i++){
          for(unsigned long int j=0;j<nd->size_Ny();j++){

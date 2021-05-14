@@ -10,6 +10,8 @@
 #define NEUTRONDATA_H
 
 #include <math.h>
+#include <QFile>
+#include <QTextStream>
 #include "data2d.h"
 
 class NeutronData
@@ -47,6 +49,7 @@ public:
                    double pixel_y_mm=1.0           // size of pixel on y default 1 [mm]
             );
 
+    void exportData(QString filename, int unit=3);
 
     double get_ki_A();                                              // [1/Angstrom]
     double get_ki_nm();                                             // [1/nm]
