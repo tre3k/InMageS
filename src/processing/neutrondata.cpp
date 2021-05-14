@@ -81,8 +81,8 @@ void NeutronData::exportData(QString filename, int unit){
         case 3: // mrad
                 from_x = -getMaximumThetaX();
                 from_y = -getMaximumThetaY();
-                dx = 2*getMaximumThetaX()/Nx;
-                dy = 2*getMaximumThetaY()/Ny;
+                dx = 2*getMaximumThetaX()/data_matrix->size_x();
+                dy = 2*getMaximumThetaY()/data_matrix->size_y();
                 break;
         }
 
@@ -93,12 +93,14 @@ void NeutronData::exportData(QString filename, int unit){
         unit_x = from_x;
         unit_y = from_y;
 
-        for(unsigned long i=0;i<Nx;i++){
-                for(unsigned long j=0;j<Ny;j++){
-                        text_stream << QString::number(unit_x) << " " << QString::number(unit_y) << " " << data_matrix->at(i,j) << "\n";
-                        unit_x += dx;
+        for(unsigned long i=0;i<data_matrix->size_x();i++){
+                for(unsigned long j=0;j<data_matrix->size_y();j++){
+                        if(data_matrix->at(i,j)!=0) text_stream << QString::number(unit_x) << " " << QString::number(unit_y) << " " << data_matrix->at(i,j) << "\n";
                         unit_y += dy;
                 }
+                text_stream << "\n";
+                unit_x += dx;
+                unit_y = from_y;
         }
 
 
